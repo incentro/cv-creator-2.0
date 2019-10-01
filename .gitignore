@@ -1,0 +1,49 @@
+# vscode
+.vscode
+.angulardoc.json
+
+# Angular
+angular.json
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# FP
+.tmp/
+.work/
+dist/
+results/
+.cli
+.artifact
+
+# Intellij
+.idea/
+*.iml
+*.iws
+atlassian-ide-plugin.xml
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+
+# NodeJS
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# FP
+.cli/
+.tmp/
+*.generated.ts
+.webbundle/
+**/coverage/*
+.work/
+
+# System Files
+.DS_Store
+Thumbs.db
