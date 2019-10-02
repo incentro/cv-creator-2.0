@@ -1,0 +1,49 @@
+//Layout variabelen
+$a4-width: 595px;
+$a4-height: 842px;
+
+//Layout
+.cv-wrapper {
+  display: flex;
+  margin: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.double-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 2;
+}
+
+.orange-column {
+    background-color: $orange;
+    height: 590px;
+}
+
+
+.a4-column {
+  background-color: #cecece;
+  width: $a4-width;
+  height: $a4-height;
+}
+
+.headera4 {
+    height: 250px;
+    background-color: grey;
+}
+
+
