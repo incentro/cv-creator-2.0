@@ -1,6 +1,7 @@
 //Layout variabelen
 $a4-width: 595px;
 $a4-height: 842px;
+$padding: 30px 25px;
 
 //Layout
 .cv-wrapper {
@@ -27,18 +28,20 @@ $a4-height: 842px;
   flex-direction: column;
   flex-basis: 100%;
   flex: 2;
+  padding: $padding;
 }
 
 .orange-column {
     background-color: $orange;
     height: 590px;
+    padding: $padding;
 }
 
 
 .a4-column {
-  background-color: #cecece;
   width: $a4-width;
   height: $a4-height;
+  border: 1px solid #cecece;
 }
 
 .headera4 {
