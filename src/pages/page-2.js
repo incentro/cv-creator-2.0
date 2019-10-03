@@ -2,7 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 
 //Import componenten
-
+import TitleComponent from "../components/TitleComponent"
+import FunctionDescription from "../components/FunctionDescription"
 
 const SecondPage = () => (
     
@@ -24,37 +25,28 @@ const SecondPage = () => (
         </div>
         <div class='row'>
             <div class='double-column'>
-                <h1>Werkervaring</h1>
+                <TitleComponent title="Werkervaring" />
+                    <FunctionDescription
+                        periode="2010 - heden"
+                        functie="Front-End Developer @ Coop Supermarkten"
+                        omschrijving="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    />  
+
+                <TitleComponent title="Opleidingen" />
     
-                    <div class="row">
-                        <div class="column">
-                        <strong>2017 - nu</strong>
-                        <h2>Front-end Developer @ Coop</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        </div>
-                    </div>    
-    
-                <h1>Opleidingen</h1>
-    
-                        <div class="row">
-                        <div class="column">
-                        <strong>2017 - nu</strong>
-                        <h2>Bedrijfskunde @ Erasmus Universiteit</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        </div>
-                    </div>  
+                    <FunctionDescription
+                        periode="2010 - 2012"
+                        functie="Bedrijfskunde @ Erasmus Universiteit Rotterdam"
+                        omschrijving="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    />  
 
             </div>
+            
             <div class='column'>
                 <div class="orange-column">
-                <h1 className="white">info</h1>
-    
-                <div class="row">
-                    <div class="column">
-                    
-                    </div>
-                </div>  
-            </div>
+                    <TitleComponent title="Info" />
+
+                </div>
             </div>
         </div>
     </div>
