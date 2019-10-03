@@ -6,6 +6,7 @@ import TitleComponent from "../components/TitleComponent"
 import FunctionDescription from "../components/FunctionDescription"
 import UserInfo from "../components/UserInfo"
 import Lijst from "../components/Lijst"
+import HeaderCV from "../components/HeaderCV"
 
 const kwaliteiten = ["teamplayer", "hardwerkend", "sociaal"];
 const skills = ["HTML", "CSS", "Javascript"];
@@ -20,11 +21,11 @@ const SecondPage = () => (
             <div class="a4-column">
                 <div class='row'>
                     <div class='column'>
-                        <div class="headera4">
-                            <h1>[naam]</h1>
-                            <h1>[jouw functie hier]</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        </div>
+                        <HeaderCV 
+                            naam="Sander van Rijsoort" 
+                            functie="Front-End Developer" 
+                            omschrijving="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus" 
+                        />
                     </div>
                 </div>
             <div class='row'>

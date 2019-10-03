@@ -33,7 +33,7 @@ $padding: 30px 25px;
 
 .orange-column {
     background-color: $orange;
-    height: 1250px;
+    height: 1150px;
     padding: $padding;
 }
 
@@ -41,12 +41,32 @@ $padding: 30px 25px;
 .a4-column {
   width: $a4-width;
   height: $a4-height;
-  border: 1px solid #cecece;
+  box-shadow: 0px 10px 20px #888;
 }
 
 .headera4 {
-    height: 250px;
-    background-color: grey;
+    height: 350px;
+    background-image: url("https://cdn.images.express.co.uk/img/dynamic/151/590x/Earth-1021070.jpg?r=1537557439012");
+    padding: 100px 25px;
+    h1,p {
+        color: $white;
+        text-transform: none;
+    }
 }
+
+.overlay {
+  position: relative;
+}
+
+.overlay:after {
+  position: absolute;
+  content:"";
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+}
+
 
 
