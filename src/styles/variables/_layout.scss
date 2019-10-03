@@ -23,6 +23,15 @@ $padding: 30px 25px;
   flex: 1;
 }
 
+.functie {
+    flex: 10;
+    margin: 20px 25px;
+}
+
+.timeline {
+    flex: 0.65;
+}
+
 .double-column {
   display: flex;
   flex-direction: column;
@@ -34,7 +43,11 @@ $padding: 30px 25px;
 .orange-column {
     background-color: $orange;
     height: 1150px;
+    position: relative;
     padding: $padding;
+    h1 {
+        color: $white;
+    }
 }
 
 
@@ -46,27 +59,14 @@ $padding: 30px 25px;
 
 .headera4 {
     height: 350px;
-    background-image: url("https://cdn.images.express.co.uk/img/dynamic/151/590x/Earth-1021070.jpg?r=1537557439012");
+    background:linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(https://myob-gm-digital-production-blog-assets.s3.amazonaws.com/uploads/2018/11/Death-of-open-plan-offices-header.jpg);
     padding: 100px 25px;
-    h1,p {
+    h1 {
         color: $white;
+        font-size: 36px;
         text-transform: none;
     }
+    p {
+        color: $white;
+    }
 }
-
-.overlay {
-  position: relative;
-}
-
-.overlay:after {
-  position: absolute;
-  content:"";
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  opacity:0;
-}
-
-
-

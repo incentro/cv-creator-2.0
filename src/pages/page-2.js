@@ -7,6 +7,7 @@ import FunctionDescription from "../components/FunctionDescription"
 import UserInfo from "../components/UserInfo"
 import Lijst from "../components/Lijst"
 import HeaderCV from "../components/HeaderCV"
+import logoWhite from "../images/incentro_logo_white.png"
 
 const kwaliteiten = ["teamplayer", "hardwerkend", "sociaal"];
 const skills = ["HTML", "CSS", "Javascript"];
@@ -63,6 +64,13 @@ const SecondPage = () => (
                         
                         <Lijst list={kwaliteiten} titel="Kwaliteiten" />
                         <Lijst list={skills} titel="Skills" />
+                        
+                        <img src={logoWhite} style={{height: "20px",
+                                                     width: "100px",
+                                                     display: "block",
+                                                     position: "absolute",
+                                                     bottom: "25px"
+                                                    }}/>
 
 
                     </div>
