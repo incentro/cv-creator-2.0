@@ -1,5 +1,5 @@
-//Layout variabelen
-$a4-width: 800px;
+//Layout variables
+$a4-width: 1000px;
 $a4-height: 1500px;
 $padding: 30px 25px;
 
@@ -13,6 +13,7 @@ $padding: 30px 25px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  position: relative;
   width: 100%;
 }
 
@@ -20,16 +21,16 @@ $padding: 30px 25px;
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
+  position: relative;
   flex: 1;
-}
-
-.functie {
-    flex: 10;
-    margin: 20px 25px;
-}
-
-.timeline {
-    flex: 0.65;
+  &--orange {
+    background-color: $orange;
+    position: relative;
+    padding: $padding;
+    h1 {
+      color: $white;
+    }
+  }
 }
 
 .double-column {
@@ -40,21 +41,28 @@ $padding: 30px 25px;
   padding: $padding;
 }
 
-.orange-column {
-    background-color: $orange;
-    height: 1150px;
-    position: relative;
-    padding: $padding;
-    h1 {
-        color: $white;
-    }
-}
-
-
 .a4-column {
   width: $a4-width;
-  height: $a4-height;
-  box-shadow: 0px 10px 20px #888;
+  //height: $a4-height;
+  box-shadow: 0 10px 20px #888;
+}
+
+.functie {
+    flex: 10;
+    margin: 20px 25px;
+}
+
+.timeline {
+    flex: 0.65;
+    &:after {
+      content: "";
+      border-left: 1px solid #888;
+      height: 87%;
+      display: block;
+      margin-top: 34px;
+      margin-left: 16px;
+      position: absolute;
+  }
 }
 
 .headera4 {
