@@ -3,6 +3,27 @@ $a4-width: 1000px;
 $a4-height: 1500px;
 $padding: 30px 25px;
 
+//Header styling
+header {
+  background-color: $orange;
+  height: 75px;
+  box-shadow: 1px 1px 15px #888;
+}
+
+//Login scren
+.loginbox {
+  width: 600px;
+  height: 250px;
+  box-shadow: 0px 1px 15px #888;
+  border-radius: 5px;
+  margin: auto;
+  text-align: center;
+}
+
+.login {
+  margin: auto;
+}
+
 //Layout
 .cv-wrapper {
   display: flex;
@@ -65,6 +86,7 @@ $padding: 30px 25px;
   }
 }
 
+//Header voor CV
 .headera4 {
     height: 350px;
     background:linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(https://myob-gm-digital-production-blog-assets.s3.amazonaws.com/uploads/2018/11/Death-of-open-plan-offices-header.jpg);
@@ -77,4 +99,43 @@ $padding: 30px 25px;
     p {
         color: $white;
     }
+    input, textarea {
+      border: none;
+      background-color: #000;
+      color: $white;
+      text-transform: none;
+    }
+  textarea {
+    width: 950px;
+    height: 100px;
+    resize: none;
+  }
+  }
+
+.editable {
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 0px 15px #fff;
+    border-radius: 5px;
+    background-color: #363636;
+    display: inline-block
+  }
+}
+
+#description {
+   font-size: 12px;
+ }
+
+#title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.editicon {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  color: $white;
+  font-size: 12px;
+  font-weight: bold;
 }

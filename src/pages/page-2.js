@@ -6,14 +6,14 @@ import TitleComponent from "../components/TitleComponent"
 import FunctionDescription from "../components/CVcomponents/FunctionDescription"
 import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
-import HeaderCV from "../components/Header/HeaderCV"
+import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
 
 const kwaliteiten = ["teamplayer", "hardwerkend", "sociaal"];
 const skills = ["HTML", "CSS", "Javascript"];
 const optioneel = ["YPA certificaat", "Anders..."];
 
-const SecondPage = () => (
+const CV = () => (
     
 <div className="cv-wrapper">
     <div className="row">
@@ -24,7 +24,7 @@ const SecondPage = () => (
                 <div className="row">
                     <div className="column">
                     <HeaderCV
-                        name="Sander van Rijsoort"
+                        name="Rick Bakker"
                         job="Front-End Developer"
                         description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus"
                     />
@@ -66,7 +66,7 @@ const SecondPage = () => (
                             <UserInfo item="telefoon" value="06-43499341" />
                             <UserInfo item="geboortedatum" value="23 april 1993" />
 
-                            {/* Lijsten kunnen gemaakt worden met vierkantjes, cijfers of niks */}
+                            {/* Lijsten kunnen gemaakt worden met standaard bolletjes, cijfers of niks */}
                             <List list={kwaliteiten} title="Kwaliteiten" />
                             <List list={skills} title="Skills" type="decimal" />
                             <List list={optioneel} title="Optioneel" type="none" />
@@ -86,4 +86,4 @@ const SecondPage = () => (
 
 )
 
-export default SecondPage
+export default CV
