@@ -1,0 +1,30 @@
+.login {
+  background: url('../../images/vestiging-rotterdam.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 700px;
+  margin-bottom: 2em;
+}
+
+.jumbotron {
+  text-align: center;
+  margin: 0 auto;
+  height: 200px;
+  width: 60%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.login_button {
+  color: #fff;
+  font-size: 21px;
+  padding: 14px 24px;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.login_button:hover {
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+
+.tittle {
+  padding: 20px 0 10px;
+}

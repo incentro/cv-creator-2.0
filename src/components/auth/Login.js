@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import firebaseConfig from '../../firebaseConfig'
 
+import './login.css'
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 
 const firebaseAppAuth = firebaseApp.auth()
@@ -16,24 +17,15 @@ class Login extends Component {
     render() {
 
         const {
-            user,
-            signOut,
             signInWithGoogle,
         } = this.props
 
         return (
-            <div>
-                <h1>Welcome to the Incentro cv creator</h1>
-                {
-                    user
-                        ? <p>Hello, {user.displayName}</p>
-                        : <p>Please sign in.</p>
-                }
-                {
-                    user
-                        ? <button onClick={signOut}>Sign out</button>
-                        : <button onClick={signInWithGoogle}>Login with Google</button>
-                }
+            <div className='login'>
+                <div className='jumbotron'>
+                    <h1 className='title'>incentro cv creator</h1>
+                    <button className='login_button' onClick={signInWithGoogle}>Login with your incentro account</button>
+                </div>
             </div>
         )
     }
