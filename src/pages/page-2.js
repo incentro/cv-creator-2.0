@@ -62,14 +62,17 @@ const CV = () => (
                     </div>
                     <div className="column column--orange">
                         <TitleComponent title="Info" />
-                            <UserInfo item="email" value="sander.vanrijsoort@incentro.com" />
-                            <UserInfo item="telefoon" value="06-43499341" />
-                            <UserInfo item="geboortedatum" value="23 april 1993" />
+                            <UserInfo item="email" info="sander.vanrijsoort@incentro.com" />
+                            <UserInfo item="telefoon" info="06-43499341" />
+                            <UserInfo item="geboortedatum" info="23 april 1993" />
+                            <UserInfo item="website (optioneel)" info="https://www" />
+                            <UserInfo item="woonplaats" info="Amsterdam" />
 
                             {/* Lijsten kunnen gemaakt worden met standaard bolletjes, cijfers of niks */}
                             <List list={kwaliteiten} title="Kwaliteiten" />
                             <List list={skills} title="Skills" type="decimal" />
                             <List list={optioneel} title="Optioneel" type="none" />
+                            <button className="btn btn--small" >Voeg extra lijst toe</button>
 
                             <img src= {logoWhite} alt="logo_white" style={{ height: "20px",
                                                                             width: "100px",

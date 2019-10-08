@@ -114,12 +114,14 @@ header {
 
 .editable {
   cursor: pointer;
-  &:hover {
-    box-shadow: 0px 0px 15px #fff;
-    border-radius: 5px;
-    background-color: #363636;
-    display: inline-block
-  }
+
+  /* &: hover {
+  box-shadow: 0px 0px 15px #fff;
+  border-radius: 5px;
+  background-color: #363636;
+  display: inline-block
+}
+*/
 }
 
 #description {
@@ -138,4 +140,9 @@ header {
   color: $white;
   font-size: 12px;
   font-weight: bold;
+}
+
+.editicons {
+  display: inline-block;
+  margin-left: 10px;
 }

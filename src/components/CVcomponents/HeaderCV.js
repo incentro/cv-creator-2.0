@@ -33,7 +33,6 @@ class HeaderCV extends React.Component {
   jobClick() {
     this.setState(state => ({
       isJobClicked: !state.isJobClicked}
-
       ));
   }
 
