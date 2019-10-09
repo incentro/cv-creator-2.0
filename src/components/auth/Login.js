@@ -24,11 +24,9 @@ class Login extends Component {
         } = this.props
 
         return (
-            <div className='login'>
-                <div className='jumbotron'>
-                    <h1 className='title'>incentro cv creator</h1>
-                    <button className='login_button' onClick={signInWithGoogle}>Login with your incentro account</button>
-                </div>
+            <div className='jumbotron'>
+                <h1 className='title'>incentro cv creator</h1>
+                <button className='login_button' onClick={signInWithGoogle}>Login with your incentro account</button>
             </div>
         )
     }

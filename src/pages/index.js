@@ -5,12 +5,13 @@ import React from "react"
 // import Image from "../components/image"
 // import SEO from "../components/seo"
 
+import '../components/auth/login.css'
 import Login from '../components/auth/Login'
 
 const IndexPage = () => (
-  <React.Fragment>
+  <div className='login'>
       <Login/>
-  </React.Fragment>
+  </div>
 )
 
 export default IndexPage

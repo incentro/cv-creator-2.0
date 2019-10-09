@@ -3,14 +3,22 @@
   background-size: cover;
   height: 700px;
   margin-bottom: 2em;
+  top: 200px;
 }
 
 .jumbotron {
   text-align: center;
-  margin: 0 auto;
+  top: 200px;
+  right: 0;
+  left: 0;
+  margin: auto;
   height: 200px;
   width: 60%;
+  border-radius: 6px;
+  padding: 48px 60px;
+  font: 14px "Open Sans", SansSerif;
   background: rgba(255, 255, 255, 0.9);
+  position: absolute;
 }
 
 .login_button {
