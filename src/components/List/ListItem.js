@@ -1,6 +1,6 @@
 import React from 'react';
 
-import deleteIcon from "../../images/delete_icon.png"
+// import deleteIcon from "../../images/delete_icon.png"
 import changeIcon from "../../images/edit_icon.png"
 
 class ListItem extends React.Component {
@@ -49,7 +49,7 @@ class ListItem extends React.Component {
             {this.state.isHovered ?
               <div className="edit--icons">
                 <img src={changeIcon} alt="change_icon" onClick={this.isClicked}/>
-                <img src={deleteIcon} alt="delete_icon" onClick={this.removeItem}/>
+                {/*<img src={deleteIcon} alt="delete_icon" onClick={this.removeItem}/>*/}
               </div>
               :
               null }</li> }
