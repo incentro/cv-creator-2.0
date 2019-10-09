@@ -86,6 +86,14 @@ header {
   }
 }
 
+input, textarea {
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  color: #fff;
+  text-transform: none;
+}
+
 //Header for CV template
 .headera4 {
     height: 350px;
@@ -116,8 +124,10 @@ header {
 .editable {
   cursor: pointer;
   &:hover {
-    box-shadow: 0px 0px 15px #fff;
+    //box-shadow: 0px 0px 15px #fff;
     //margin: 0px 10px 0px 10px;
+    border: 1px solid #cecece;
+    position: relative;
     border-radius: 5px;
     display: inline-block
   }

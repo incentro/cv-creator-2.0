@@ -1,6 +1,6 @@
 import React from 'react';
 
-class HeaderCV extends React.Component {
+  class HeaderCV extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

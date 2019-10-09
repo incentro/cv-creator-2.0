@@ -15,7 +15,6 @@ class ListItem extends React.Component {
     this.isHovered = this.isHovered.bind(this);
     this.saveInput = this.saveInput.bind(this);
     this.isClicked = this.isClicked.bind(this)
-    this.removeItem = this.removeItem.bind(this);
   }
 
   isHovered() {
@@ -35,21 +34,17 @@ class ListItem extends React.Component {
     this.setState({isClicked: false})
   }
 
-  removeItem() {
-    console.log("Hallo");
-  }
-
   render() {
     return (
       <div className="editable" onMouseEnter={this.isHovered} onMouseLeave={this.isHovered}>
         {this.state.isClicked ?
           <input type="text" defaultValue={this.state.item} onClick autoFocus onBlur={this.saveInput} />
           :
-        <li>{!!(this.state.item) ? this.state.item : "<Vul hier je informatie aan>" }
+        <li key={this.state.item}> {!!(this.state.item) ? this.state.item : "<Vul hier je informatie aan>" }
           {this.state.isHovered ?
             <div className="edit--icons">
               <img src={changeIcon} alt="change_icon" onClick={this.isClicked}/>
-              <img src={deleteIcon} alt="delete_icon" onClick={this.removeItem}/>
+              <img src={deleteIcon} alt="delete_icon" onClick= />
             </div>
             :
             null }

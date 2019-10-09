@@ -31,9 +31,8 @@ class List extends React.Component {
                 <TitleComponent title= {this.state.title} />
                   <ul className={this.state.type}>
                     {this.state.list.map(el => (
-                    <ListItem item= {el} />
+                    <ListItem item= {el}/>
                     ))}
-
                   </ul>
                 <button className="btn btn--small" onClick={this.addItem} style={{display: "inline-block", marginLeft: "10px", fontSize: "14px"}}>Extra item +</button>
                 <button className="btn btn--small" onClick={this.changeType} style={{display: "inline-block", marginLeft: "10px", fontSize: "14px"}}>Change list style</button>
