@@ -30,8 +30,8 @@ class HeaderCV extends React.Component {
 
   jobClick() {
     this.setState(state => ({
-      isJobClicked: !state.isJobClicked}
-      ));
+        isJobClicked: !state.isJobClicked}
+    ));
   }
 
   descriptionClick() {
@@ -57,33 +57,34 @@ class HeaderCV extends React.Component {
   }
 
   render() {
-  return(
-    <div className="headera4">
+    return(
+      <div className="headera4">
         <div className="editable" onClick={this.nameClick}>
-            {this.state.isNameClicked ?
-                <div>
-                    <input type="text" id="title" defaultValue={this.state.name} onClick onBlur={this.saveNameInput}/>
-                </div>
-                :
-                <h1>{this.state.name}</h1> }
+          {this.state.isNameClicked ?
+            <div>
+              <input type="text" id="title" defaultValue={this.state.name} onClick autoFocus onBlur={this.saveNameInput}/>
+            </div>
+            :
+            <h1>{!!(this.state.name) ? this.state.name : "<Vul hier je informatie aan>" }</h1>
+          }
         </div>
         <div className="editable" onClick={this.jobClick}>
-            {this.state.isJobClicked ?
-                <div>
-                    <input type="text" id="title" defaultValue={this.state.job} onClick onBlur={this.saveJobInput}/>
-                </div>
-                :
-                    <h1>{this.state.job}</h1> }
+          {this.state.isJobClicked ?
+            <div>
+              <input type="text" id="title" defaultValue={this.state.job} onClick autoFocus onBlur={this.saveJobInput}/>
+            </div>
+            :
+            <h1>{!!(this.state.job) ? this.state.job : "<Vul hier je informatie aan>" }</h1> }
         </div>
         <div className="editable" onClick={this.descriptionClick}>
-            {this.state.isDescriptionClicked ?
-                <div>
-                    <textarea id="description" defaultValue={this.state.description} onClick onBlur={this.saveDescriptionInput}/>
-                </div>
-                :
-                <p className="description">{this.state.description}</p> }
+          {this.state.isDescriptionClicked ?
+            <div>
+              <textarea id="description" defaultValue={this.state.description} onClick autoFocus onBlur={this.saveDescriptionInput}/>
+            </div>
+            :
+            <p className="description">{!!(this.state.description) ? this.state.description : "<Vul hier je informatie aan>" }</p> }
         </div>
-    </div>
+      </div>
     )
   }
 }
