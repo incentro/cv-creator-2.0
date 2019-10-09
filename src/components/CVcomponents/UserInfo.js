@@ -29,9 +29,9 @@ class UserInfo extends React.Component {
                 <h3>{this.state.item}</h3>
                 <div className="editable" onClick={this.changeBool}>
                 {this.state.isClicked ?
-                  <input type="text" defaultValue={this.state.info} onClick onBlur={this.saveInput} />
+                  <input type="text" defaultValue={this.state.info} onClick autoFocus onBlur={this.saveInput} />
                   :
-                  <p className="informatie">{this.state.info}</p> }
+                  <p className="information">{!!(this.state.info) ? this.state.info : "<Vul hier je informatie aan>" }</p> }
                 </div>
             </div>
     )

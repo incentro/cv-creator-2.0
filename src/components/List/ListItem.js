@@ -43,11 +43,11 @@ class ListItem extends React.Component {
     return (
       <div className="editable" onMouseEnter={this.isHovered} onMouseLeave={this.isHovered}>
         {this.state.isClicked ?
-          <input type="text" defaultValue={this.state.item} onClick onBlur={this.saveInput} />
+          <input type="text" defaultValue={this.state.item} onClick autoFocus onBlur={this.saveInput} />
           :
-        <li>{this.state.item}
+        <li>{!!(this.state.item) ? this.state.item : "<Vul hier je informatie aan>" }
           {this.state.isHovered ?
-            <div className="editicons">
+            <div className="edit--icons">
               <img src={changeIcon} alt="change_icon" onClick={this.isClicked}/>
               <img src={deleteIcon} alt="delete_icon" onClick={this.removeItem}/>
             </div>
