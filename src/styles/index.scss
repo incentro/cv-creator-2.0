@@ -1,6 +1,6 @@
-@import "./variables/_breakpoints.scss";
-@import "./variables/_colors.scss";
-@import "./variables/_layout.scss";
-@import "./variables/_typography.scss";
-@import "./variables/_buttons.scss";
+@import "settings/_breakpoints.scss";
+@import "settings/_colors.scss";
+@import "generic/layout";
+@import "settings/_typography.scss";
+@import "generic/buttons";
 

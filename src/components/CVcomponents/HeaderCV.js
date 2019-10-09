@@ -1,7 +1,5 @@
 import React from 'react';
 
-import EditIcon from "../../images/edit_icon_orange.png"
-
 class HeaderCV extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +21,7 @@ class HeaderCV extends React.Component {
     this.saveDescriptionInput = this.saveDescriptionInput.bind(this);
   }
 
-  //Functies die ervoor zorgen dat state veranderd veranderd naar false
+  //Functions that will toggle between booleans to make the field editable
   nameClick() {
     this.setState(state => ({
       isNameClicked: !state.isNameClicked
@@ -33,7 +31,6 @@ class HeaderCV extends React.Component {
   jobClick() {
     this.setState(state => ({
       isJobClicked: !state.isJobClicked}
-
       ));
   }
 
@@ -43,7 +40,7 @@ class HeaderCV extends React.Component {
     }));
   }
 
-  //Functies die ervoor zorgt dat de input van het field wordt opgeslagen
+  //Functions that will save the input after tabbing or clicking outside the field
   saveNameInput(event) {
     this.setState({name: event.target.value});
     this.setState({isNameClicked: false})
@@ -59,40 +56,35 @@ class HeaderCV extends React.Component {
     this.setState({isDescriptionClicked: false})
   }
 
-
   render() {
-  return( <div className="headera4">
-                <div className="editable" onClick={this.nameClick}>
-                    {this.state.isNameClicked ?
-                      <div>
-                        <input type="text" id="title" defaultValue={this.state.name} onClick onBlur={this.saveNameInput}/>
-                      </div>
-                      :
-                      <h1>{this.state.name}</h1> }
+  return(
+    <div className="headera4">
+        <div className="editable" onClick={this.nameClick}>
+            {this.state.isNameClicked ?
+                <div>
+                    <input type="text" id="title" defaultValue={this.state.name} onClick onBlur={this.saveNameInput}/>
                 </div>
-                <div className="editable" onClick={this.jobClick}>
-                  {this.state.isJobClicked ?
-                    <div>
-                      <input type="text" id="title" defaultValue={this.state.job} onClick onBlur={this.saveJobInput}/>
-                    </div>
-                    :
+                :
+                <h1>{this.state.name}</h1> }
+        </div>
+        <div className="editable" onClick={this.jobClick}>
+            {this.state.isJobClicked ?
+                <div>
+                    <input type="text" id="title" defaultValue={this.state.job} onClick onBlur={this.saveJobInput}/>
+                </div>
+                :
                     <h1>{this.state.job}</h1> }
+        </div>
+        <div className="editable" onClick={this.descriptionClick}>
+            {this.state.isDescriptionClicked ?
+                <div>
+                    <textarea id="description" defaultValue={this.state.description} onClick onBlur={this.saveDescriptionInput}/>
                 </div>
-                <div className="editable" onClick={this.descriptionClick}>
-                  {this.state.isDescriptionClicked ?
-                    <div>
-                      <textarea id="description" defaultValue={this.state.description} onClick onBlur={this.saveDescriptionInput}/>
-                    </div>
-                    :
-                    <p className="description">{this.state.description}</p> }
-                </div>
-            </div>
+                :
+                <p className="description">{this.state.description}</p> }
+        </div>
+    </div>
     )
   }
 }
-
-export default HeaderCV;                        
-
-
-
-
+export default HeaderCV;

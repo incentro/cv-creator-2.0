@@ -71,10 +71,7 @@ const CV = () => (
                             <List list={skills} title="Skills" type="decimal" />
                             <List list={optioneel} title="Optioneel" type="none" />
 
-                            <img src= {logoWhite} alt="logo_white" style={{ height: "20px",
-                                                                            width: "100px",
-                                                                            margin: "auto auto -10px auto",
-                            }}/>
+                            <img src= {logoWhite} alt="logo_white" className="logo" />
                     </div>
                 </div>
             </div>
