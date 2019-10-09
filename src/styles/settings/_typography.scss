@@ -1,0 +1,68 @@
+//Import Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+//Typography settings
+$main-font: "Montserrat", "Arial", "sans-serif";
+$h1-font-size: 30px;
+$h2-font-size: 18px;
+$h3-font-size: 16px;
+$main-font-size: 14px;
+$list-font-size: 12px;
+
+//Basic text elements styling
+body {
+    font-family: $main-font;
+}
+
+h1 {
+    color: #000;
+    font-size: $h1-font-size;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+h2 {
+    font-size: $h2-font-size;
+    font-weight: 700;
+}
+
+h3 {
+    color: #fff;
+    font-size: $h3-font-size;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+p {
+    font-size: $main-font-size;
+}
+
+ul {
+    color: #fff;
+    font-size: $list-font-size;
+}
+
+//Other layout element styling
+.timestamp {
+    font-size: 10px;
+    color: $primary-color;
+    font-weight: bold;
+}
+
+.information {
+    color: #fff;
+    font-size: 12px;
+}
+
+.white {
+    color: #fff;
+}
+
+//List styles styling
+.none {
+    list-style: none;
+}
+
+.decimal {
+    list-style: decimal;
+}
