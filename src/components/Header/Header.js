@@ -8,5 +8,4 @@ const Header = () => (
     <p style={{color: "white", fontSize: "16px"}}>CV Creator 2.0</p>
   </header>
 )
-
 export default Header
