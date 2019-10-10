@@ -13,15 +13,20 @@ class CV extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      qualities: ["teamplayer", "hardwerkend", "sociaal"],
-      skills: ["HTML", "CSS", "Javascript"],
-      optional: ["YPA certificaat", "Anders..."]
+      qualities:  [{id:1, value: "teamplayer"},{id:2, value: "hardwerkend"},{id:3, value: "sociaal"}],
+      skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
+      optional: [{id:1, value: "YPA certificaat"},{id:2, value: "Codeacademy"},{id:3, value: "Anders..."}],
     };
     //binding
-
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   //Put functions here
+  removeTodo(name){
+    this.setState({
+      qualities: this.state.qualities.filter(el => el !== name)
+    })
+  }
 
   render() {
     return (
@@ -79,9 +84,9 @@ class CV extends React.Component {
                   <UserInfo item="woonplaats" info="Amsterdam"/>
 
                   {/* Lijsten kunnen gemaakt worden met standaard bolletjes, cijfers of niks */}
-                  <List list={this.state.qualities} title="Kwaliteiten" />
-                  <List list={this.state.skills} title="Skills" type="decimal" />
-                  <List list={this.state.optional} title="Optioneel" type="none" />
+                  <List list={this.state.qualities} title="Kwaliteiten" removeTodo={this.removeTodo} />
+                  <List list={this.state.skills} title="Skills" type="decimal" removeTodo={this.removeTodo} />
+                  <List list={this.state.optional} title="Optioneel" type="none" removeTodo={this.removeTodo} />
                   <button className="btn btn--small">Voeg extra lijst toe</button>
 
                   <img src={logoWhite} alt="logo_white" className="logo"/>
