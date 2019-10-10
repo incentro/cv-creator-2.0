@@ -1,13 +1,15 @@
 import React from "react"
-// import { Link } from "gatsby"
 
-import '../components/auth/login.css'
+import Firebase, { FirebaseContext } from '../components/firebase/index'
 import Login from '../components/auth/Login'
 
+import '../components/auth/login.css'
 const IndexPage = () => (
-  <div className='login'>
-      <Login/>
-  </div>
+    <FirebaseContext.Provider value={new Firebase()}>
+        <div className='login'>
+            <Login/>
+        </div>
+    </FirebaseContext.Provider>
 )
 
 export default IndexPage

@@ -1,5 +1,4 @@
 import React from "react"
-// import { Link } from "gatsby"
 
 //Import components
 import TitleComponent from "../components/TitleComponent"
