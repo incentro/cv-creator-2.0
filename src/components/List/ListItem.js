@@ -3,16 +3,21 @@ import React, { useState } from "react"
 import deleteIcon from "../../images/delete_icon.png"
 import changeIcon from "../../images/edit_icon.png"
 
-const ListItem = ({ changeItem, item, key, removeItem }) => {
+const ListItem = ({ changeItem, item, key, index, removeItem }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
+
+  const combineFunc = (e) => {
+    changeItem(e, index);
+    setIsClicked(!isClicked);
+  }
 
   return (
 
     <div className="editable" onMouseEnter={() => setIsHovered(!isHovered)}
          onMouseLeave={() => setIsHovered(!isHovered)}>
       {isClicked ?
-        <input type="text" defaultValue={item} autoFocus onBlur={(e) => changeItem(e)}/>
+        <input type="text" id={key} defaultValue={item} autoFocus onBlur={combineFunc}/>
         :
         <li key={key}> {!!(item) ? item : "<Vul hier je informatie aan>"}
           {isHovered ?

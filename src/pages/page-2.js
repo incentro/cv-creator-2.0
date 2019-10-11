@@ -17,18 +17,9 @@ class CV extends React.Component {
       skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
       optional: [{id:1, value: "YPA certificaat"},{id:2, value: "Codeacademy"},{id:3, value: "Anders..."}],
     };
-    //binding
-    this.removeTodo = this.removeTodo.bind(this);
   }
 
-  //Put functions here
-  removeTodo(name){
-    this.setState({
-      qualities: this.state.qualities.filter(el => el !== name)
-    })
-  }
-
-  render() {
+    render() {
     return (
       <div className="cv-wrapper">
         <div className="row">
@@ -87,7 +78,7 @@ class CV extends React.Component {
                   <List list={this.state.qualities} title="Kwaliteiten" removeTodo={this.removeTodo} />
                   <List list={this.state.skills} title="Skills" type="decimal" removeTodo={this.removeTodo} />
                   <List list={this.state.optional} title="Optioneel" type="none" removeTodo={this.removeTodo} />
-                  <button className="btn btn--small">Voeg extra lijst toe</button>
+                  <button className="btn btn--small"> + Voeg extra lijst toe</button>
 
                   <img src={logoWhite} alt="logo_white" className="logo"/>
                 </div>
