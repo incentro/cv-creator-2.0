@@ -15,8 +15,21 @@ class CV extends React.Component {
     this.state = {
       qualities:  [{id:1, value: "teamplayer"},{id:2, value: "hardwerkend"},{id:3, value: "sociaal"}],
       skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
-      optional: [{id:1, value: "YPA certificaat"},{id:2, value: "Codeacademy"},{id:3, value: "Anders..."}],
+      optional: [{id:1, value: "Overige kwaliteiten"}],
+      extraList: false,
+      isHovered: false,
     };
+    this.addList = this.addList.bind(this);
+    this.isHovered = this.isHovered.bind(this);
+  }
+
+  addList() {
+    this.setState({extraList: !this.state.extraList});
+  }
+
+  isHovered() {
+    this.setState({isHovered: !this.state.isHovered});
+    console.log("isHovered var:" + this.state.isHovered);
   }
 
     render() {
@@ -66,7 +79,7 @@ class CV extends React.Component {
                     description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                   />
                 </div>
-                <div className="column column--orange">
+                <div className="column column--orange" onMouseEnter={this.isHovered} onMouseLeave={this.isHovered}>
                   <TitleComponent title="Info"/>
                   <UserInfo item="email" info="sander.vanrijsoort@incentro.com"/>
                   <UserInfo item="telefoon" info="06-43499341"/>
@@ -75,11 +88,10 @@ class CV extends React.Component {
                   <UserInfo item="woonplaats" info="Amsterdam"/>
 
                   {/* Lijsten kunnen gemaakt worden met standaard bolletjes, cijfers of niks */}
-                  <List list={this.state.qualities} title="Kwaliteiten" removeTodo={this.removeTodo} />
-                  <List list={this.state.skills} title="Skills" type="decimal" removeTodo={this.removeTodo} />
-                  <List list={this.state.optional} title="Optioneel" type="none" removeTodo={this.removeTodo} />
-                  <button className="btn btn--small"> + Voeg extra lijst toe</button>
-
+                  <List list={this.state.qualities} title="Kwaliteiten" />
+                  <List list={this.state.skills} title="Skills" type="decimal" />
+                  {this.state.extraList ? <List list={this.state.optional} title="Optioneel" type="decimal" extraList={this.state.extraList} /> : null}
+                  {this.state.isHovered ? <button className="btn btn--small" onClick={this.addList}> + Add extra list</button> : null}
                   <img src={logoWhite} alt="logo_white" className="logo"/>
                 </div>
               </div>
