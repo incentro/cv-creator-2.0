@@ -8,11 +8,16 @@ import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
+import ListItem from "../components/List/ListItem"
 
 class CV extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      workexp: [{id:1, job: "Back-end Developer @ Coop", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
+                {id:2, job: "Front-end Developer @ Incentro", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
+      education: [{id:1, job: "Bedrijfskunde @ Erasmus Universiteit", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
+                  {id:2, job: "Strategic Entrepreneurship @ Erasmus", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
       qualities:  [{id:1, value: "teamplayer"},{id:2, value: "hardwerkend"},{id:3, value: "sociaal"}],
       skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
       optional: [{id:1, value: "Overige kwaliteiten"}],
@@ -21,6 +26,8 @@ class CV extends React.Component {
     };
     this.addList = this.addList.bind(this);
     this.isHovered = this.isHovered.bind(this);
+    this.changeWorkExp = this.changeWorkExp.bind(this);
+    this.changeEducation = this.changeEducation.bind(this);
   }
 
   addList() {
@@ -30,6 +37,32 @@ class CV extends React.Component {
   isHovered() {
     this.setState({isHovered: !this.state.isHovered});
     console.log("isHovered var:" + this.state.isHovered);
+  }
+
+  changeWorkExp(e, index) {
+    //Get values of event
+    const targetedValue = e.target.id;
+    const newValue = e.target.value;
+    const newArr = [...this.state.workexp];
+
+    //Change the targeted item
+    newArr[index][targetedValue] = newValue;
+
+    //Setting the state with changed array
+    this.setState({workexp: newArr});
+  }
+
+  changeEducation(e, index) {
+    //Get values of event
+    const targetedValue = e.target.id;
+    const newValue = e.target.value;
+    const newArr = [...this.state.education];
+
+    //Change the targeted item
+    newArr[index][targetedValue] = newValue;
+
+    //Setting the state with changed array
+    this.setState({education: newArr});
   }
 
     render() {
@@ -51,36 +84,32 @@ class CV extends React.Component {
               </div>
               <div className='row'>
                 <div className='double-column'>
-                  <TitleComponent title="Werkervaring"/>
-                  <FunctionDescription
-                    period="2010 - heden"
-                    job="Front-End Developer @ Coop Supermarkten"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <FunctionDescription
-                    period="2010 - heden"
-                    job="Front-End Developer @ Coop Supermarkten"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <TitleComponent title="Opleidingen"/>
-                  <FunctionDescription
-                    period="2017 - 2018"
-                    job="Strategic Entrepreneurship @ Erasmus Universiteit Rotterdam"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <FunctionDescription
-                    period="2011 - 2016"
-                    job="Bedrijfskunde @ Erasmus Universiteit Rotterdam"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <FunctionDescription
-                    period="2011 - 2016"
-                    job="Bedrijfskunde @ Erasmus Universiteit Rotterdam"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
+                  <h1>Werkervaring</h1>
+                  {this.state.workexp.map((el) => {
+                    return (
+                      <FunctionDescription
+                        period={el.time}
+                        job={el.job}
+                        description={el.description}
+                        changeItem={this.changeWorkExp}
+                        index={el.id-1}
+                      />)
+                  })}
+
+                  <h1>Opleidingen</h1>
+                  {this.state.education.map((el) => {
+                    return (
+                      <FunctionDescription
+                        period={el.time}
+                        job={el.job}
+                        description={el.description}
+                        changeItem={this.changeEducation}
+                        index={el.id-1}
+                      />)
+                  })}
                 </div>
                 <div className="column column--orange" onMouseEnter={this.isHovered} onMouseLeave={this.isHovered}>
-                  <TitleComponent title="Info"/>
+                  <h1>Info</h1>
                   <UserInfo item="email" info="sander.vanrijsoort@incentro.com"/>
                   <UserInfo item="telefoon" info="06-43499341"/>
                   <UserInfo item="geboortedatum" info="23 april 1993"/>
