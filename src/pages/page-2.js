@@ -74,13 +74,23 @@ class CV extends React.Component {
                 </div>
                 <div className="column column--orange" onMouseEnter={this.isHovered} onMouseLeave={this.isHovered}>
                   <TitleComponent title={mock.info.title}/>
-                  <UserInfo item={mock.info.email} info="sander.vanrijsoort@incentro.com"/>
-                  <UserInfo item={mock.info.phone} info="06-43499341"/>
-                  <UserInfo item={mock.info["date-of-birth"]} info="23 april 1993"/>
-                  <UserInfo item={mock.info.website} info="https://www"/>
-                  <UserInfo item={mock.info.address} info="Amsterdam"/>
+                  <UserInfo item="email" info={mock.info.email} />
+                  <UserInfo item="phone" info={mock.info.phone} />
+                  <UserInfo item="date of birth" info={mock.info["date-of-birth"]} />
+                  <UserInfo item="website" info={mock.info.website} />
+                  <UserInfo item="address" info={mock.info.address} />
 
                   {/* Lijsten kunnen gemaakt worden met standaard bolletjes, cijfers of niks */}
+                  {/*{*/}
+                  {/*  mock.qualities["qualities"].map((quality, index) =>*/}
+                  {/*    <List key={index} list={quality} title={mock.qualities.title} />*/}
+                  {/*  )*/}
+                  {/*}*/}
+                  {/*{*/}
+                  {/*  mock.skills["skills"].map((skill, index) =>*/}
+                  {/*    <List key={index} list={skill} title={mock.skills.title} type="decimal" />*/}
+                  {/*  )*/}
+                  {/*}*/}
                   <List list={this.state.qualities} title="Kwaliteiten" />
                   <List list={this.state.skills} title="Skills" type="decimal" />
                   {this.state.extraList ? <List list={this.state.optional} title="Optioneel" type="decimal" extraList={this.state.extraList} /> : null}

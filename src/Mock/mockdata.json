@@ -52,15 +52,23 @@
     "website": "",
     "address": "schoolstraat 8"
   },
-  "qualities": [
-    "painting",
-    "skating",
-    "cooking"
-  ],
-  "skills": [
-    "singing",
-    "designing"
-  ],
+  "qualities": {
+    "title": "Qualities",
+    "qualities": [
+      "teamplayer",
+      "hardworking",
+      "social"
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "skills": [
+      "HTML",
+      "NodeJS",
+      "React",
+      "JavaScript"
+    ]
+  },
   "optional": [
     ""
   ]
