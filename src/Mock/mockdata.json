@@ -1,0 +1,67 @@
+{
+  "header": {
+    "name": "bob",
+    "job": "freelancer",
+    "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+  },
+  "workexperience": {
+    "title": "Workexperience",
+    "experiences": [
+      {
+        "period": "1989 - 2001",
+        "job": "Front-End Developer @ Coop Supermarkten",
+        "description": "lorem ..."
+      },
+      {
+        "period": "2001 - 2007",
+        "job": "painter",
+        "description": "lorem ..."
+      },
+      {
+        "period": "2009 - 2020",
+        "job": "designer",
+        "description": "lorem..."
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "studies": [
+      {
+        "period": "2009 - 2013",
+        "education": "Bedrijfskunde @ Erasmus Universiteit Rotterdam",
+        "description": "lorem ..."
+      },
+      {
+        "period": "2014 - 2017",
+        "education": "Asian studies & culture @ Leiden Universiteit",
+        "description": "lorem ..."
+      },
+      {
+        "period": "2017 - 2019",
+        "education": "Strategic Entrepreneurship @ Erasmus Universiteit Rotterdam",
+        "description": "lorem..."
+      }
+    ]
+  },
+  "info": {
+    "title": "Info",
+    "email": "hi@incentro.com",
+    "phone": "0612345678",
+    "date-of-birth": "12-3-1975",
+    "website": "",
+    "address": "schoolstraat 8"
+  },
+  "qualities": [
+    "painting",
+    "skating",
+    "cooking"
+  ],
+  "skills": [
+    "singing",
+    "designing"
+  ],
+  "optional": [
+    ""
+  ]
+}

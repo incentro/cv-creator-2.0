@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import mock from "../Mock/mockdata"
 
 //Import components
 import TitleComponent from "../components/TitleComponent"
@@ -43,49 +43,42 @@ class CV extends React.Component {
               <div className="row">
                 <div className="column">
                   <HeaderCV
-                    name="Rick Bakker"
-                    job="Front-End Developer"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus"
+                    name={mock.header.name}
+                    job={mock.header.job}
+                    description={mock.header.description}
                   />
                 </div>
               </div>
               <div className='row'>
                 <div className='double-column'>
-                  <TitleComponent title="Werkervaring"/>
-                  <FunctionDescription
-                    period="2010 - heden"
-                    job="Front-End Developer @ Coop Supermarkten"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <FunctionDescription
-                    period="2010 - heden"
-                    job="Front-End Developer @ Coop Supermarkten"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <TitleComponent title="Opleidingen"/>
-                  <FunctionDescription
-                    period="2017 - 2018"
-                    job="Strategic Entrepreneurship @ Erasmus Universiteit Rotterdam"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <FunctionDescription
-                    period="2011 - 2016"
-                    job="Bedrijfskunde @ Erasmus Universiteit Rotterdam"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
-                  <FunctionDescription
-                    period="2011 - 2016"
-                    job="Bedrijfskunde @ Erasmus Universiteit Rotterdam"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-                  />
+                  <TitleComponent title={mock.workexperience.title}/>
+                  {
+                    mock.workexperience["experiences"].map((experience, index) =>
+                      <FunctionDescription key={index}
+                        period={experience.period}
+                        job={experience.job}
+                        description={experience.description}
+                      />
+                    )
+                  }
+                  <TitleComponent title={mock.education.title}/>
+                  {
+                    mock.education["studies"].map((study, index) =>
+                      <FunctionDescription key={index}
+                        period={study.period}
+                        job={study.education}
+                        description={study.description}
+                      />
+                    )
+                  }
                 </div>
                 <div className="column column--orange" onMouseEnter={this.isHovered} onMouseLeave={this.isHovered}>
-                  <TitleComponent title="Info"/>
-                  <UserInfo item="email" info="sander.vanrijsoort@incentro.com"/>
-                  <UserInfo item="telefoon" info="06-43499341"/>
-                  <UserInfo item="geboortedatum" info="23 april 1993"/>
-                  <UserInfo item="website (optioneel)" info="https://www"/>
-                  <UserInfo item="woonplaats" info="Amsterdam"/>
+                  <TitleComponent title={mock.info.title}/>
+                  <UserInfo item={mock.info.email} info="sander.vanrijsoort@incentro.com"/>
+                  <UserInfo item={mock.info.phone} info="06-43499341"/>
+                  <UserInfo item={mock.info["date-of-birth"]} info="23 april 1993"/>
+                  <UserInfo item={mock.info.website} info="https://www"/>
+                  <UserInfo item={mock.info.address} info="Amsterdam"/>
 
                   {/* Lijsten kunnen gemaakt worden met standaard bolletjes, cijfers of niks */}
                   <List list={this.state.qualities} title="Kwaliteiten" />
