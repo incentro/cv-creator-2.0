@@ -147,6 +147,79 @@ class CV extends React.Component {
       </div>
 
     )
+  // return (
+  //   <div className="cv-wrapper">
+  //     <div className="row">
+  //       <div className="column">
+  //       </div>
+  //       <div className="column">
+  //         <div className="a4-column">
+  //           <div className="row">
+  //             <div className="column">
+  //               <HeaderCV
+  //                 name={mock.header.name}
+  //                 job={mock.header.job}
+  //                 description={mock.header.description}
+  //               />
+  //             </div>
+  //           </div>
+  //           <div className='row'>
+  //             <div className='double-column'>
+  //               <TitleComponent title={mock.workexperience.title}/>
+  //               {
+  //                 mock.workexperience["experiences"].map((experience, index) =>
+  //                   <FunctionDescription key={index}
+  //                                        period={experience.period}
+  //                                        job={experience.job}
+  //                                        description={experience.description}
+  //                   />
+  //                 )
+  //               }
+  //               <TitleComponent title={mock.education.title}/>
+  //               {
+  //                 mock.education["studies"].map((study, index) =>
+  //                   <FunctionDescription key={index}
+  //                                        period={study.period}
+  //                                        job={study.education}
+  //                                        description={study.description}
+  //                   />
+  //                 )
+  //               }
+  //             </div>
+  //             <div className="column column--orange" onMouseEnter={this.isHovered} onMouseLeave={this.isHovered}>
+  //               <TitleComponent title={mock.info.title}/>
+  //               <UserInfo item="email" info={mock.info.email} />
+  //               <UserInfo item="phone" info={mock.info.phone} />
+  //               <UserInfo item="date of birth" info={mock.info["date-of-birth"]} />
+  //               <UserInfo item="website" info={mock.info.website} />
+  //               <UserInfo item="address" info={mock.info.address} />
+  //
+  //               {/* Lijsten kunnen gemaakt worden met standaard bolletjes, cijfers of niks */}
+  //               {/*{*/}
+  //               {/*  mock.qualities["qualities"].map((quality, index) =>*/}
+  //               {/*    <List key={index} list={quality} title={mock.qualities.title} />*/}
+  //               {/*  )*/}
+  //               {/*}*/}
+  //               {/*{*/}
+  //               {/*  mock.skills["skills"].map((skill, index) =>*/}
+  //               {/*    <List key={index} list={skill} title={mock.skills.title} type="decimal" />*/}
+  //               {/*  )*/}
+  //               {/*}*/}
+  //               <List list={this.state.qualities} title="Kwaliteiten" />
+  //               <List list={this.state.skills} title="Skills" type="decimal" />
+  //               {this.state.extraList ? <List list={this.state.optional} title="Optioneel" type="decimal" extraList={this.state.extraList} /> : null}
+  //               {this.state.isHovered ? <button className="btn btn--small" onClick={this.addList}> + Add extra list</button> : null}
+  //               <img src={logoWhite} alt="logo_white" className="logo"/>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //       <div className='column'>
+  //       </div>
+  //     </div>
+  //   </div>
+  //
+  // )
   }
 }
 
