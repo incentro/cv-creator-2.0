@@ -14,7 +14,7 @@ const UserInfo = ({ item, info }) => {
       <h3>{item}</h3>
       <div className="editable" onClick={() => {setIsClicked(!isClicked)}}>
         {isClicked ?
-          <input type="text" defaultValue={isInfo} autoFocus onBlur={changeInfo} />
+          <input type="text" className="information" defaultValue={isInfo} autoFocus onBlur={changeInfo} />
           :
           <p className="information">{!!(isInfo) ? isInfo : "<Vul hier je informatie aan>" }</p> }
       </div>
