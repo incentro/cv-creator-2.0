@@ -8,12 +8,12 @@ import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
-import ListItem from "../components/List/ListItem"
 
 class CV extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      headerinfo: {name: "Sander van Rijsoort", job: "Front-end Developer", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
       workexp: [{id:1, job: "Back-end Developer @ Coop", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
                 {id:2, job: "Front-end Developer @ Incentro", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
       education: [{id:1, job: "Bedrijfskunde @ Erasmus Universiteit", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
@@ -28,6 +28,7 @@ class CV extends React.Component {
     this.isHovered = this.isHovered.bind(this);
     this.changeWorkExp = this.changeWorkExp.bind(this);
     this.changeEducation = this.changeEducation.bind(this);
+    this.changeHeader = this.changeHeader.bind(this);
   }
 
   addList() {
@@ -37,6 +38,17 @@ class CV extends React.Component {
   isHovered() {
     this.setState({isHovered: !this.state.isHovered});
     console.log("isHovered var:" + this.state.isHovered);
+  }
+
+  changeHeader(e) {
+    //Get values of event
+    const targetedValue = e.target.id;
+    const newValue = e.target.value;
+    const newObj = {...this.state.headerinfo}
+
+    newObj[targetedValue] = newValue;
+
+    this.setState({headerinfo: newObj})
   }
 
   changeWorkExp(e, index) {
@@ -76,9 +88,10 @@ class CV extends React.Component {
               <div className="row">
                 <div className="column">
                   <HeaderCV
-                    name="Rick Bakker"
-                    job="Front-End Developer"
-                    description="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus"
+                    name={this.state.headerinfo.name}
+                    job={this.state.headerinfo.job}
+                    description={this.state.headerinfo.description}
+                    changeHeader={this.changeHeader}
                   />
                 </div>
               </div>

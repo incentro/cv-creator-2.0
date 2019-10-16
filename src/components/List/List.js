@@ -65,22 +65,20 @@ const List = ({ list, title, type }) => {
         {contentState.map((el, index) => {
           return (
             <ListItem item={el.value}
-                      key={index}
+                      key={el.value}
                       index={index}
                       removeItem={removeItem}
                       changeItem={changeItem}
             /> )
         })}
       </ul>
-      {isHovered ?
+      {isHovered &&
         <div>
-          <button className="btn btn--small" onClick={addItem} style={{display: "inline-block", marginLeft: "10px", fontSize: "10px"}}>Extra item +</button>
-          <button className="btn btn--small" onClick={changeBullets} style={{display: "inline-block", marginLeft: "10px", fontSize: "10px"}}>Bullets</button>
-          <button className="btn btn--small" onClick={changeNone} style={{display: "inline-block", marginLeft: "10px", fontSize: "10px"}}>None</button>
-          <button className="btn btn--small" onClick={changeDecimal} style={{display: "inline-block", marginLeft: "10px", fontSize: "10px"}}>Decimal</button>
-        </div>
-        :
-        null}
+          <button className="btn btn--small btn--edit" onClick={addItem}>Extra item +</button>
+          <button className="btn btn--small btn--edit" onClick={changeBullets}>Bullets</button>
+          <button className="btn btn--small btn--edit" onClick={changeNone}>None</button>
+          <button className="btn btn--small btn--edit" onClick={changeDecimal}>Decimal</button>
+        </div>}
     </div>
   )
 }

@@ -7,7 +7,7 @@ const ListItem = ({ changeItem, item, key, index, removeItem }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
 
-  const combineFunc = (e) => {
+  const changeListItem = (e) => {
     changeItem(e, index);
     setIsClicked(!isClicked);
   }
@@ -17,16 +17,14 @@ const ListItem = ({ changeItem, item, key, index, removeItem }) => {
     <div className="editable" onMouseEnter={() => setIsHovered(!isHovered)}
          onMouseLeave={() => setIsHovered(!isHovered)}>
       {isClicked ?
-        <input type="text" id={key} defaultValue={item} autoFocus onBlur={combineFunc}/>
+        <input type="text" id={key} defaultValue={item} autoFocus onBlur={changeListItem}/>
         :
         <li key={key}> {!!(item) ? item : "<Vul hier je informatie aan>"}
-          {isHovered ?
+          {isHovered &&
             <div className="edit--icons">
               <img src={changeIcon} alt="change_icon" onClick={() => setIsClicked(!isClicked)}/>
               <img src={deleteIcon} alt="delete_icon" onClick={() => removeItem(item)}/>
-            </div>
-            :
-            null}
+            </div>}
         </li>}
     </div>)
 }
