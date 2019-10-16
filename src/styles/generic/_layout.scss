@@ -71,6 +71,10 @@ header {
 .function {
     flex: 10;
     margin: 20px 25px;
+    textarea {
+      width: 100%;
+      height: 100%;
+  }
 }
 
 .timeline {
@@ -179,4 +183,8 @@ input, textarea {
   color: #000;
   resize: none;
   font-size: 16px;
+}
+
+#counter {
+  font-weight: bold;
 }

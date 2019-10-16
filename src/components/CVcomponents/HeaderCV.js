@@ -4,6 +4,7 @@ const HeaderCV = ( {name, job, description, changeHeader} ) => {
   const [isNameClicked, setIsNameClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
   const [isDescClicked, setIsDescClicked] = useState(false)
+  const [isWordCount, setIsWordCount] = useState(description.length)
 
   //Save name function
   const saveName = (e) => {
@@ -21,6 +22,10 @@ const HeaderCV = ( {name, job, description, changeHeader} ) => {
   const saveDesc = (e) => {
     changeHeader(e);
     setIsDescClicked(!isDescClicked);
+  }
+
+  const wordCount = (e) => {
+      setIsWordCount(e.target.value.length);
   }
 
 
@@ -46,7 +51,8 @@ const HeaderCV = ( {name, job, description, changeHeader} ) => {
       <div className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>
         {isDescClicked ?
           <div>
-            <textarea id="description" defaultValue={description} autoFocus onBlur={saveDesc}/>
+            <textarea id="description" defaultValue={description} autoFocus onBlur={saveDesc} onChange={wordCount} maxLength="400"/>
+            <p id="counter">{isWordCount}/400 karakters over</p>
           </div>
           :
           <p className="description">{!!(description) ? description : "<Vul hier je informatie aan>" }</p> }

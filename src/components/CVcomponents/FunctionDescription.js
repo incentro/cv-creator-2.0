@@ -8,6 +8,7 @@ const FunctionDescription = ( {period, job, description, index, changeItem} ) =>
   const [isTimeClicked, setIsTimeClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
   const [isDescClicked, setIsDescClicked] = useState(false)
+  const [isWordCount, setIsWordCount] = useState(description.length);
 
   const changeTime = (e) => {
     changeItem(e, index);
@@ -22,6 +23,10 @@ const FunctionDescription = ( {period, job, description, index, changeItem} ) =>
   const changeDescription = (e) => {
     changeItem(e, index);
     setIsDescClicked(!isDescClicked);
+  }
+
+  const wordCount = (e) => {
+    setIsWordCount(e.target.value.length);
   }
 
 return (
@@ -44,9 +49,12 @@ return (
       }
 
       {isDescClicked ?
-        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription}/>
+        <div>
+        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} onChange={wordCount} maxLength="1000"/>
+        <p id="counter">{isWordCount}/1000 karakters over</p>
+        </div>
         :
-        <p className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>{description}</p> }
+        <p className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>{!!(description) ? description : "Voeg een beschrijving toe!"}</p> }
     </div>
   </div>  )
 };
