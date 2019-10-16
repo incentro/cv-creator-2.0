@@ -1,15 +1,15 @@
 import React from "react"
 
-import Firebase, { FirebaseContext } from '../components/firebase/index'
-import Login from '../components/auth/Login'
+import Header from "../components/Header/Header"
+import CV from "./page-2"
+import Login from "../components/Auth/Login"
 
-import '../components/auth/login.css'
+import("../styles/index.scss")
+
 const IndexPage = () => (
-    <FirebaseContext.Provider value={new Firebase()}>
-        <div className='login'>
-            <Login/>
-        </div>
-    </FirebaseContext.Provider>
+<div className="login">
+  <Login />
+</div>
 )
 
 export default IndexPage
