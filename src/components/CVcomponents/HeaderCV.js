@@ -1,91 +1,57 @@
-import React from 'react';
+import React, { useState } from "react"
 
-class HeaderCV extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      "isNameClicked": false,
-      "isJobClicked": false,
-      "isDescriptionClicked": false,
-      "name" : this.props.name,
-      "job" : this.props.job,
-      "description" : this.props.description
-    };
+const HeaderCV = ( {name, job, description, changeHeader} ) => {
+  const [isNameClicked, setIsNameClicked] = useState(false)
+  const [isJobClicked, setIsJobClicked] = useState(false)
+  const [isDescClicked, setIsDescClicked] = useState(false)
 
-    // This binding is necessary to make `this` work in the callback
-    this.nameClick = this.nameClick.bind(this);
-    this.jobClick = this.jobClick.bind(this);
-    this.descriptionClick = this.descriptionClick.bind(this);
-    this.saveNameInput = this.saveNameInput.bind(this);
-    this.saveJobInput = this.saveJobInput.bind(this);
-    this.saveDescriptionInput = this.saveDescriptionInput.bind(this);
+  //Save name function
+  const saveName = (e) => {
+    changeHeader(e);
+    setIsNameClicked(!isNameClicked);
   }
 
-  //Functions that will toggle between booleans to make the field editable
-  nameClick() {
-    this.setState(state => ({
-      isNameClicked: !state.isNameClicked
-    }));
+  //Save job title function
+  const saveJob = (e) => {
+    changeHeader(e);
+    setIsJobClicked(!isJobClicked);
   }
 
-  jobClick() {
-    this.setState(state => ({
-        isJobClicked: !state.isJobClicked}
-    ));
+  //Save description function
+  const saveDesc = (e) => {
+    changeHeader(e);
+    setIsDescClicked(!isDescClicked);
   }
 
-  descriptionClick() {
-    this.setState(state => ({
-      isDescriptionClicked: !state.isDescriptionClicked
-    }));
-  }
 
-  //Functions that will save the input after tabbing or clicking outside the field
-  saveNameInput(event) {
-    this.setState({name: event.target.value});
-    this.setState({isNameClicked: false})
-  }
-
-  saveJobInput(event) {
-    this.setState({job: event.target.value});
-    this.setState({isJobClicked: false})
-  }
-
-  saveDescriptionInput(event) {
-    this.setState({description: event.target.value});
-    this.setState({isDescriptionClicked: false})
-  }
-
-  render() {
-    return(
-      <div className="headera4">
-        <div className="editable" onClick={this.nameClick}>
-          {this.state.isNameClicked ?
-            <div>
-              <input type="text" id="title" defaultValue={this.state.name} onClick autoFocus onBlur={this.saveNameInput}/>
-            </div>
-            :
-            <h1>{!!(this.state.name) ? this.state.name : "<Vul hier je informatie aan>" }</h1>
-          }
-        </div>
-        <div className="editable" onClick={this.jobClick}>
-          {this.state.isJobClicked ?
-            <div>
-              <input type="text" id="title" defaultValue={this.state.job} onClick autoFocus onBlur={this.saveJobInput}/>
-            </div>
-            :
-            <h1>{!!(this.state.job) ? this.state.job : "<Vul hier je informatie aan>" }</h1> }
-        </div>
-        <div className="editable" onClick={this.descriptionClick}>
-          {this.state.isDescriptionClicked ?
-            <div>
-              <textarea id="description" defaultValue={this.state.description} onClick autoFocus onBlur={this.saveDescriptionInput}/>
-            </div>
-            :
-            <p className="description">{!!(this.state.description) ? this.state.description : "<Vul hier je informatie aan>" }</p> }
-        </div>
+  return (
+    <div className="headera4">
+      <div className="editable" onClick={() => setIsNameClicked(!isNameClicked)}>
+        {isNameClicked ?
+          <div>
+            <input type="text" id="name" defaultValue={name} autoFocus onBlur={saveName}/>
+          </div>
+          :
+          <h1>{!!(name) ? name : "<Vul hier je informatie aan>" }</h1>
+        }
       </div>
-    )
-  }
-}
+      <div className="editable" onClick={() => setIsJobClicked(!isJobClicked)}>
+        {isJobClicked ?
+          <div>
+            <input type="text" id="job" defaultValue={job} autoFocus onBlur={saveJob}/>
+          </div>
+          :
+          <h1>{!!(job) ? job : "<Vul hier je informatie aan>" }</h1> }
+      </div>
+      <div className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>
+        {isDescClicked ?
+          <div>
+            <textarea id="description" defaultValue={description} autoFocus onBlur={saveDesc}/>
+          </div>
+          :
+          <p className="description">{!!(description) ? description : "<Vul hier je informatie aan>" }</p> }
+      </div>
+    </div>
+  )
+};
 export default HeaderCV;

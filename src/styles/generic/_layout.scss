@@ -65,67 +65,74 @@ header {
 .a4-column {
   width: $a4-width;
   //height: $a4-height;
-  box-shadow: 0 10px 20px #888;
+  box-shadow: 0 10px 20px $box-shadow-color;
 }
 
 .function {
-  flex: 10;
-  margin: 20px 25px;
+    flex: 10;
+    margin: 20px 25px;
 }
 
 .timeline {
-  flex: 0.65;
-  &:after {
-    content: "";
-    border-left: 1px solid #888;
-    height: 87%;
-    display: block;
-    margin-top: 34px;
-    margin-left: 16px;
-    position: absolute;
+    flex: 0.65;
+    &:after {
+      content: "";
+      border-left: 1px solid $border-color;
+      height: 87%;
+      display: block;
+      margin-top: 34px;
+      margin-left: 16px;
+      position: absolute;
   }
+}
+
+input, textarea {
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  color: #fff;
+  text-transform: none;
 }
 
 //Header for CV template
 .headera4 {
-  height: 350px;
-  background:linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(https://myob-gm-digital-production-blog-assets.s3.amazonaws.com/uploads/2018/11/Death-of-open-plan-offices-header.jpg);
-  padding: 100px 25px;
-  h1 {
-    color: #fff;
-    font-size: 36px;
-    text-transform: none;
-  }
-  p {
-    color: #fff;
-  }
-  input, textarea {
-    border: none;
-    background: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    color: #fff;
-    text-transform: none;
-  }
+    height: 350px;
+    background:linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(https://myob-gm-digital-production-blog-assets.s3.amazonaws.com/uploads/2018/11/Death-of-open-plan-offices-header.jpg);
+    padding: 100px 25px;
+    h1 {
+        color: #fff;
+        font-size: 36px;
+        text-transform: none;
+    }
+    p {
+        color: #fff;
+    }
+    input, textarea {
+      border: none;
+      background: rgba(0, 0, 0, 0);
+      cursor: pointer;
+      color: #fff;
+      text-transform: none;
+    }
   textarea {
     width: 950px;
     height: 100px;
     resize: none;
   }
-}
+  }
 
 .editable {
   cursor: pointer;
   &:hover {
-    box-shadow: 0px 0px 15px #fff;
-    //margin: 0px 10px 0px 10px;
-    border-radius: 5px;
-    display: inline-block
+    border-bottom: 2px solid #cecece;
+    position: relative;
+    display: inline-block;
   }
 }
 
 #description {
-  font-size: 12px;
-}
+   font-size: 12px;
+ }
 
 #title {
   font-size: 36px;
@@ -152,3 +159,24 @@ header {
   margin: auto auto -10px auto;
 }
 
+.list {
+  padding-bottom: 30px;
+}
+
+.modal {
+  width: 200px;
+  height: 50px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+.jobtitle {
+  color: #000;
+  font-weight: bold;
+}
+
+.description {
+  color: #000;
+  resize: none;
+  font-size: 16px;
+}

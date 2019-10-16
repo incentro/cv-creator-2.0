@@ -1,45 +1,85 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ListItem from "./ListItem"
 import TitleComponent from "../TitleComponent"
 
-class List extends React.Component {
-  constructor(props)  {
-    super(props);
-    this.state = {
-      "isClicked": false,
-      "title" : this.props.title,
-      "type" : this.props.type,
-      "list" : this.props.list
-    };
-    //Function binding
-    this.addItem = this.addItem.bind(this);
-    this.changeType = this.changeType.bind(this);
+const List = ({ list, title, type }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [contentState, setContentState] = useState(list);
+  const [listStyle, setListStyle] = useState(type);
+  const [useTitle, setUseTitle] = useState(title);
+
+  //Adding items to the list
+  const addItem = () => {
+    const newItem = [...contentState, {title}];
+    setContentState(newItem);
   }
 
-  //Functie voor het toevoegen van een nieuw item
-  addItem() {
-    this.setState({ list: [ ...this.state.list, <ListItem item = "Extra item" />] })
+  //Removing item from the list
+  const removeItem = (id) => {
+    //Filter all items except the one to be removed
+    const remainder = contentState.filter((el) => {
+      if(el.value !== id) return el;
+    })
+    //Change the items
+    setContentState(remainder);
+    }
+
+  //Changing list item and saving
+  const changeItem = (e, index) => {
+    const newArr = [...contentState];
+    newArr[index].value = e.target.value;
+    setContentState(newArr);
   }
 
-  //Functie voor het veranderen van de lijst stijl
-  changeType() {
-    this.setState({type: "decimal"})
+  //Changing title function
+  const changeTitle = (e) => {
+    const newTitle = e.target.value;
+    setUseTitle(newTitle);
   }
 
-  render() {
-    return (  <div>
-        <TitleComponent title= {this.state.title} />
-        <ul className={this.state.type}>
-          {this.state.list.map(el => (
-            <ListItem item= {el} />
-          ))}
-
-        </ul>
-        <button className="btn btn--small" onClick={this.addItem} style={{display: "inline-block", marginLeft: "10px", fontSize: "14px"}}>Extra item +</button>
-        <button className="btn btn--small" onClick={this.changeType} style={{display: "inline-block", marginLeft: "10px", fontSize: "14px"}}>Change list style</button>
-      </div>
-    )
+  //Toggle function for hovering to make buttons appear
+  const isHovering = () => {
+    setIsHovered(!isHovered);
   }
+
+  //Change list style
+  const changeDecimal = () => {
+    setListStyle("decimal");
+  }
+
+  //Change list style
+  const changeNone = () => {
+    setListStyle("none");
+  }
+
+  //Change list style
+  const changeBullets = () => {
+    setListStyle("");
+  }
+
+
+  return (
+    <div className="list" onMouseLeave={isHovering} onMouseEnter={isHovering}>
+      <TitleComponent title={useTitle} changeTitle={changeTitle}/>
+      <ul className={listStyle}>
+        {contentState.map((el, index) => {
+          return (
+            <ListItem item={el.value}
+                      key={el.value}
+                      index={index}
+                      removeItem={removeItem}
+                      changeItem={changeItem}
+            /> )
+        })}
+      </ul>
+      {isHovered &&
+        <div>
+          <button className="btn btn--small btn--edit" onClick={addItem}>Extra item +</button>
+          <button className="btn btn--small btn--edit" onClick={changeBullets}>Bullets</button>
+          <button className="btn btn--small btn--edit" onClick={changeNone}>None</button>
+          <button className="btn btn--small btn--edit" onClick={changeDecimal}>Decimal</button>
+        </div>}
+    </div>
+  )
 }
-
-export default List;
+export default List

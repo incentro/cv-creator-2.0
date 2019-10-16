@@ -1,41 +1,24 @@
-import React from 'react';
+import React, { useState } from "react"
 
-class UserInfo extends React.Component {
-  constructor(props)  {
-    super(props);
+const UserInfo = ({ item, info }) => {
+  const [isClicked, setIsClicked] = useState(false)
+  const [isInfo, setIsInfo] = useState(info)
 
-    this.state = {
-      "isClicked": false,
-      "item" : this.props.item,
-      "info" : this.props.info,
-    };
-    this.changeBool = this.changeBool.bind(this);
-    this.saveInput = this.saveInput.bind(this);
+  const changeInfo = (e) => {
+    setIsInfo(e.target.value);
+    setIsClicked(!isClicked);
   }
 
-  changeBool() {
-    this.setState(state => ({
-      isClicked: !state.isClicked})
-    );
-  }
-
-  saveInput(event) {
-    this.setState({info: event.target.value});
-    this.setState({isClicked: false})
-  }
-
-  render() {
-    return ( <div>
-        <h3>{this.state.item}</h3>
-        <div className="editable" onClick={this.changeBool}>
-          {this.state.isClicked ?
-            <input type="text" defaultValue={this.state.info} onClick autoFocus onBlur={this.saveInput} />
-            :
-            <p className="information">{!!(this.state.info) ? this.state.info : "<Vul hier je informatie aan>" }</p> }
-        </div>
+  return (
+    <div>
+      <h3>{item}</h3>
+      <div className="editable" onClick={() => {setIsClicked(!isClicked)}}>
+        {isClicked ?
+          <input type="text" defaultValue={isInfo} autoFocus onBlur={changeInfo} />
+          :
+          <p className="information">{!!(isInfo) ? isInfo : "<Vul hier je informatie aan>" }</p> }
       </div>
-    )
-  }
+    </div>)
 }
 
-export default UserInfo;
+export default UserInfo
