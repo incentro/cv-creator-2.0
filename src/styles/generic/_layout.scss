@@ -130,7 +130,8 @@ input, textarea {
   &:hover {
     border-bottom: 2px solid #cecece;
     position: relative;
-    display: inline-block;
+    border-radius: 5px;
+    display: inline-block
   }
 }
 

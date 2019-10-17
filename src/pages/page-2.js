@@ -8,7 +8,6 @@ import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
-import ListItem from "../components/List/ListItem"
 
 class CV extends React.Component {
   constructor(props) {
