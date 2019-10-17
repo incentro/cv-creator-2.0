@@ -22,6 +22,7 @@ const FunctionDescription = ( {period, job, description, index, changeItem, show
   const changeDescription = (e) => {
     changeItem(e, index);
     setIsDescClicked(!isDescClicked);
+    showHeight();
   }
 
 return (
@@ -44,7 +45,7 @@ return (
       }
 
       {isDescClicked ?
-        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} onMouseLeave={() => showHeight()}/>
+        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} />
         :
         <div>
         <p className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>{description}</p>

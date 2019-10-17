@@ -57,7 +57,7 @@ import logoWhite from "../images/incentro_logo_white.png"
   }
 
   const seeHeight = () => {
-    console.log(doubleColumn.current.offsetHeight);
+    console.log();
   }
 
 
