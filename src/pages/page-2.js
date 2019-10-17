@@ -5,7 +5,7 @@ import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
 
-const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, firstPage }) => {
+  const CVPage = React.forwardRef(({headerinfo, workexp, education, qualities, skills, optional, firstPage, showHeight}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isExtraList, setIsExtraList] = useState(false)
   const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
@@ -15,6 +15,8 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
   const [isSkills, setIsSkills] = useState(skills)
   const [isOptional, setIsOptional] = useState(optional)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
+
+  let doubleColumn = null;
 
   const changeHeader = (e) => {
       //Get values of event
@@ -54,6 +56,10 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
     setIsEducation(newArr);
   }
 
+  const seeHeight = () => {
+    console.log(doubleColumn.current.offsetHeight);
+  }
+
 
   return (
     <div className="cv-wrapper">
@@ -74,7 +80,7 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
               </div>
             </div>
             <div className='row'>
-              <div className='double-column'>
+              <div className='double-column' ref={ref}>
                 <h1>Werkervaring</h1>
                 {isWorkExp.map((el) => {
                   return (
@@ -84,6 +90,7 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
                       description={el.description}
                       changeItem={changeWorkExp}
                       index={el.id-1}
+                      showHeight={showHeight}
                     />)
                 })}
 
@@ -96,6 +103,7 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
                       description={el.description}
                       changeItem={changeEducation}
                       index={el.id-1}
+                      showHeight={showHeight}
                     />)
                 })}
               </div>
@@ -111,7 +119,7 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
                 <List list={isQual} title="Kwaliteiten" />
                 <List list={isSkills} title="Skills" type="decimal" />
                 {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
-                {isHovered && <button className="btn btn--small" onClick={() => {setIsExtraList(!isExtraList)}}> + Add extra list</button>}
+                {isHovered && <button className="btn btn--small" onClick={seeHeight}> + Add extra list</button>}
                 <img src={logoWhite} alt="logo_white" className="logo"/>
               </div>
             </div>
@@ -121,7 +129,8 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
         </div>
       </div>
     </div>
+
   )
-}
+})
 
 export default CVPage

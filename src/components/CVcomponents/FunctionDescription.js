@@ -3,7 +3,7 @@ import React, { useState } from "react"
 //Importing components
 import orangeCircle from "../../images/circle_orange.png"
 
-const FunctionDescription = ( {period, job, description, index, changeItem} ) => {
+const FunctionDescription = ( {period, job, description, index, changeItem, showHeight} ) => {
   const [isClicked, setIsClicked] = useState(false)
   const [isTimeClicked, setIsTimeClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
@@ -44,9 +44,13 @@ return (
       }
 
       {isDescClicked ?
-        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription}/>
+        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} onMouseLeave={() => showHeight()}/>
         :
-        <p className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>{description}</p> }
+        <div>
+        <p className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>{description}</p>
+        </div>
+      }
+
     </div>
   </div>  )
 };
