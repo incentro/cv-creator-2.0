@@ -18,12 +18,17 @@ class CV extends React.Component {
       optional: [{id:1, value: "Overige kwaliteiten"}],
       pages: [],
     };
-
-    this.appendPage = this.appendPage.bind(this);
   }
 
-  appendPage() {
-
+  appendPage = () => {
+    this.setState({pages: [...this.state.pages, <CVPage firstPage={false}
+                                                        headerinfo={this.state.headerinfo}
+                                                        workexp={this.state.workexp}
+                                                        education={this.state.education}
+                                                        qualities={this.state.qualities}
+                                                        skills={this.state.skills}
+                                                        optional={this.state.optional}
+      />]})
   }
 
   render() {
@@ -37,7 +42,7 @@ class CV extends React.Component {
                   skills={this.state.skills}
                   optional={this.state.optional}
           />
-
+        {this.state.pages}
         <button className="btn btn--green" onClick={this.appendPage}>Add extra empty page</button>
       </div>
     )
