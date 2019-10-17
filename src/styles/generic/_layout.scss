@@ -1,6 +1,6 @@
 //Layout settings
-$a4-width: 1000px;
-$a4-height: 1500px;
+$a4-width: 29cm;
+$a4-height: 36cm;
 $padding: 30px 25px;
 
 //Header styling general
@@ -64,7 +64,7 @@ header {
 
 .a4-column {
   width: $a4-width;
-  //height: $a4-height;
+  height: $a4-height;
   box-shadow: 0 10px 20px $box-shadow-color;
 }
 
