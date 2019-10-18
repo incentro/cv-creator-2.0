@@ -10,8 +10,10 @@ class CV extends React.Component {
   constructor(props) {
     super(props);
     this.childRef = React.createRef();
+    this.heightDiv = null;
+    this.extraPage = false;
     this.state = {
-      fireFunction: false,
+      noExtraPage: false,
       headerinfo: {name: "Sander van Rijsoort", job: "Front-end Developer", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
       workexp: [{id:1, job: "Back-end Developer @ Coop", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
         {id:2, job: "Front-end Developer @ Incentro", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
@@ -21,21 +23,26 @@ class CV extends React.Component {
       skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
       optional: [{id:1, value: "Overige kwaliteiten"}],
       pages: [],
-      heightOfDoubleColumn: null,
+      heightDiv: null,
+      checkHeight: true,
      };
   }
 
   componentDidMount() {
-    const heightDiv = this.childRef.current.offsetHeight;
-    this.setState({heightOfDoubleColumn: heightDiv});
-    console.log("Nieuw:" + this.state.heightOfDoubleColumn);
-    console.log("heightDiv:" + heightDiv);
+    this.heightDiv = this.childRef.current.offsetHeight;
+    console.log("heightDiv:" + this.heightDiv);
   }
 
-  showHeightInConsole = () => {
-    const heightDiv = this.childRef.current.offsetHeight;
-    this.setState({heightOfDoubleColumn: heightDiv});
-    console.log("Nieuw:" + this.state.heightOfDoubleColumn);
+  changeBool = () => {
+    this.setState({checkHeight: !this.state.checkHeight})
+    console.log("Checking Height:" + this.state.checkHeight);
+  }
+
+  componentDidUpdate() {
+    this.heightDiv = this.childRef.current.offsetHeight;
+    console.log("Height Div Nieuw:" + this.heightDiv);
+    this.extraPage = this.heightDiv > 980;
+    console.log("Extra pagina nodig:" + this.extraPage);
   }
 
   render() {
@@ -50,9 +57,21 @@ class CV extends React.Component {
                   optional={this.state.optional}
                   ref={this.childRef}
                   showHeight={this.showHeightInConsole}
+                  checkBool={this.changeBool}
           />
-        {this.state.pages}
-        <button className="btn btn--green" onClick={this.showHeightInConsole}>Add extra empty page</button>
+
+        {this.extraPage&& <CVPage firstPage={true}
+                                  headerinfo={this.state.headerinfo}
+                                  workexp={this.state.workexp}
+                                  education={this.state.education}
+                                  qualities={this.state.qualities}
+                                  skills={this.state.skills}
+                                  optional={this.state.optional}
+                                  ref={this.childRef}
+                                  showHeight={this.showHeightInConsole}
+                                  checkBool={this.changeBool} />}
+
+         <button className="btn btn--green" onClick={this.appendPage}>Add extra empty page</button>
       </div>
     )
   }

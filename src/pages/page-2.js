@@ -5,7 +5,7 @@ import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
 
-  const CVPage = React.forwardRef(({headerinfo, workexp, education, qualities, skills, optional, firstPage, showHeight}, ref) => {
+  const CVPage = React.forwardRef(({headerinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isExtraList, setIsExtraList] = useState(false)
   const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
@@ -56,8 +56,8 @@ import logoWhite from "../images/incentro_logo_white.png"
     setIsEducation(newArr);
   }
 
-  const seeHeight = () => {
-    console.log();
+  const checkNewHeight = () => {
+
   }
 
 
@@ -91,6 +91,7 @@ import logoWhite from "../images/incentro_logo_white.png"
                       changeItem={changeWorkExp}
                       index={el.id-1}
                       showHeight={showHeight}
+                      checkBool={checkBool}
                     />)
                 })}
 
@@ -104,6 +105,7 @@ import logoWhite from "../images/incentro_logo_white.png"
                       changeItem={changeEducation}
                       index={el.id-1}
                       showHeight={showHeight}
+                      checkBool={checkBool}
                     />)
                 })}
               </div>
@@ -119,7 +121,7 @@ import logoWhite from "../images/incentro_logo_white.png"
                 <List list={isQual} title="Kwaliteiten" />
                 <List list={isSkills} title="Skills" type="decimal" />
                 {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
-                {isHovered && <button className="btn btn--small" onClick={seeHeight}> + Add extra list</button>}
+                {isHovered && <button className="btn btn--small"> + Add extra list</button>}
                 <img src={logoWhite} alt="logo_white" className="logo"/>
               </div>
             </div>
