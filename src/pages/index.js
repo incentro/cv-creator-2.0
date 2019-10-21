@@ -22,34 +22,46 @@ class CV extends React.Component {
       optional: [{id:1, value: "Overige kwaliteiten"}],
       pages: [],
       heightOfDoubleColumn: null,
+      totalHeight: ''
      };
   }
 
   componentDidMount() {
-    const heightDiv = this.childRef.current.offsetHeight;
-    this.setState({heightOfDoubleColumn: heightDiv});
-    console.log("Nieuw:" + this.state.heightOfDoubleColumn);
-    console.log("heightDiv:" + heightDiv);
+    // const heightDiv = this.childRef.current.offsetHeight;
+    // this.setState({heightOfDoubleColumn: heightDiv});
+    // console.log("Nieuw:" + this.state.heightOfDoubleColumn);
+    // console.log("heightDiv:" + heightDiv);
+    this.calcHeight()
   }
 
-  showHeightInConsole = () => {
-    const heightDiv = this.childRef.current.offsetHeight;
-    this.setState({heightOfDoubleColumn: heightDiv});
-    console.log("Nieuw:" + this.state.heightOfDoubleColumn);
+  calcHeight() {
+    this.setState({
+      totalHeight: this.cv.clientHeight
+    })
   }
+
+  // showHeightInConsole = () => {
+  //   const heightDiv = this.childRef.current.offsetHeight;
+  //   this.setState({heightOfDoubleColumn: heightDiv});
+  //   console.log("Nieuw:" + this.state.heightOfDoubleColumn);
+  // }
 
   render() {
     return (
       <div>
-          <CVPage firstPage={true}
-                  headerinfo={this.state.headerinfo}
-                  workexp={this.state.workexp}
-                  education={this.state.education}
-                  qualities={this.state.qualities}
-                  skills={this.state.skills}
-                  optional={this.state.optional}
-                  ref={this.childRef}
-                  showHeight={this.showHeightInConsole}
+        <p>Total height: {this.state.totalHeight}</p>
+          <CVPage
+            ref={(elem) => this.cv = elem}
+            firstPage={true}
+            headerinfo={this.state.headerinfo}
+            workexp={this.state.workexp}
+            education={this.state.education}
+            qualities={this.state.qualities}
+            skills={this.state.skills}
+            optional={this.state.optional}
+            onChange={this.calcHeight}
+            // ref={this.childRef}
+            // showHeight={this.showHeightInConsole}
           />
         {this.state.pages}
         <button className="btn btn--green" onClick={this.showHeightInConsole}>Add extra empty page</button>

@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 
 //Importing components
 import orangeCircle from "../../images/circle_orange.png"
 
-const FunctionDescription = ( {period, job, description, index, changeItem, showHeight} ) => {
+const FunctionDescription = ( {onChange, period, job, description, index, changeItem, showHeight} ) => {
   const [isClicked, setIsClicked] = useState(false)
   const [isTimeClicked, setIsTimeClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
@@ -23,6 +23,13 @@ const FunctionDescription = ( {period, job, description, index, changeItem, show
     changeItem(e, index);
     setIsDescClicked(!isDescClicked);
   }
+
+  // const inputRef = useRef(null)
+
+  // const onEdit = () => {
+  //   inputRef.current.focus()
+  //   console.log('yooo', inputRef.current.focus())
+  // }
 
 return (
   <div className="row">
@@ -44,7 +51,7 @@ return (
       }
 
       {isDescClicked ?
-        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} onMouseLeave={() => showHeight()}/>
+        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription}/>
         :
         <div>
         <p className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>{description}</p>

@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
+import ReactDOM from 'react-dom'
 import FunctionDescription from "../components/CVcomponents/FunctionDescription"
 import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
@@ -15,6 +16,14 @@ import logoWhite from "../images/incentro_logo_white.png"
   const [isSkills, setIsSkills] = useState(skills)
   const [isOptional, setIsOptional] = useState(optional)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
+
+  const [height, setHeight] = useState(0)
+
+  const measuredRef = useCallback(node => {
+    if (node !== null) {
+      setHeight(node.getBoundingClientRect().height);
+    }
+  }, []);
 
   let doubleColumn = null;
 
@@ -60,7 +69,6 @@ import logoWhite from "../images/incentro_logo_white.png"
     console.log(doubleColumn.current.offsetHeight);
   }
 
-
   return (
     <div className="cv-wrapper">
       <div className="row">
@@ -94,7 +102,7 @@ import logoWhite from "../images/incentro_logo_white.png"
                     />)
                 })}
 
-                <h1>Opleidingen</h1>
+                <h1>Opleidingen {Math.round(height)}px tall</h1>
                 {isEducation.map((el) => {
                   return (
                     <FunctionDescription
