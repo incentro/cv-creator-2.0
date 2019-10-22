@@ -5,8 +5,10 @@ import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
+import addIcon from "../images/add_icon.png"
+import Button from "../components/CVcomponents/Button"
 
-  const CVPage = React.forwardRef(({headerinfo, workexp, education, qualities, skills, optional, firstPage, showHeight}, ref) => {
+  const CVPage = React.forwardRef(({headerinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isExtraList, setIsExtraList] = useState(false)
   const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
@@ -16,6 +18,7 @@ import logoWhite from "../images/incentro_logo_white.png"
   const [isSkills, setIsSkills] = useState(skills)
   const [isOptional, setIsOptional] = useState(optional)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
+  const [isExtraPages, setIsExtraPages] = useState(extraPages)
 
   const [height, setHeight] = useState(0)
 
@@ -65,8 +68,8 @@ import logoWhite from "../images/incentro_logo_white.png"
     setIsEducation(newArr);
   }
 
-  const seeHeight = () => {
-    console.log(doubleColumn.current.offsetHeight);
+  const changeExtraPages = () => {
+
   }
 
   return (
@@ -99,6 +102,7 @@ import logoWhite from "../images/incentro_logo_white.png"
                       changeItem={changeWorkExp}
                       index={el.id-1}
                       showHeight={showHeight}
+                      checkBool={checkBool}
                     />)
                 })}
 
@@ -112,10 +116,11 @@ import logoWhite from "../images/incentro_logo_white.png"
                       changeItem={changeEducation}
                       index={el.id-1}
                       showHeight={showHeight}
+                      checkBool={checkBool}
                     />)
                 })}
               </div>
-              <div className="column column--orange" onMouseEnter={() => {setIsHovered(!isHovered)}} onMouseLeave={() => {setIsHovered(!isHovered)}}>
+              <div className="column column--orange" onMouseEnter={() => {setIsHovered(!isHovered)}} onMouseLeave={() => {setIsHovered(!isHovered)}} style={{height: "1011px"}}>
                 <h1>Info</h1>
                 <UserInfo item="email" info="sander.vanrijsoort@incentro.com"/>
                 <UserInfo item="telefoon" info="06-43499341"/>
@@ -127,8 +132,12 @@ import logoWhite from "../images/incentro_logo_white.png"
                 <List list={isQual} title="Kwaliteiten" />
                 <List list={isSkills} title="Skills" type="decimal" />
                 {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
-                {isHovered && <button className="btn btn--small" onClick={seeHeight}> + Add extra list</button>}
-                <img src={logoWhite} alt="logo_white" className="logo"/>
+                {isHovered && <button className="btn btn--small"> + Add extra list</button>}
+                { isExtraPages ?
+                  null :
+                  <Button name="nieuwe pagina" className="btn btn--add btn--small" onClick={() => { addPage(); setIsExtraPages(!extraPages);
+                  console.log("extraPages:" + extraPages)}} ><img src={addIcon} alt="addicon" /></Button>
+                }
               </div>
             </div>
           </div>
