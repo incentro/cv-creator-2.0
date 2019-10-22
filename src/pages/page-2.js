@@ -6,7 +6,6 @@ import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
 import logoWhite from "../images/incentro_logo_white.png"
 import addIcon from "../images/add_icon.png"
-import Button from "../components/CVcomponents/Button"
 
   const CVPage = React.forwardRef(({headerinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
@@ -133,11 +132,7 @@ import Button from "../components/CVcomponents/Button"
                 <List list={isSkills} title="Skills" type="decimal" />
                 {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
                 {isHovered && <button className="btn btn--small"> + Add extra list</button>}
-                { isExtraPages ?
-                  null :
-                  <Button name="nieuwe pagina" className="btn btn--add btn--small" onClick={() => { addPage(); setIsExtraPages(!extraPages);
-                  console.log("extraPages:" + extraPages)}} ><img src={addIcon} alt="addicon" /></Button>
-                }
+                {isExtraPages ? null : <button className="btn btn--add btn--small" onClick={() => { addPage(); setIsExtraPages(!extraPages); console.log("extraPages:" + extraPages)}} ><img src={addIcon} alt="addicon" />nieuwe pagina</button> }
               </div>
             </div>
           </div>
