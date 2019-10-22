@@ -1,4 +1,3 @@
-import { Link } from "gatsby"
 import React from "react"
 import logoWhite from "../../images/incentro_logo_white.png"
 

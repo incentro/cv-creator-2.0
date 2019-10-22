@@ -2,13 +2,14 @@ import React, { useState } from "react"
 
 //Importing components
 import orangeCircle from "../../images/circle_orange.png"
+import ResizableTextArea from "../CVcomponents/ResizableTextArea"
 
 const FunctionDescription = ( {period, job, description, index, changeItem} ) => {
-  const [isClicked, setIsClicked] = useState(false)
   const [isTimeClicked, setIsTimeClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
   const [isDescClicked, setIsDescClicked] = useState(false)
   const [isWordCount, setIsWordCount] = useState(description.length);
+  const [numberOfRows, setNumberOfRows] = useState(1);
 
   const changeTime = (e) => {
     changeItem(e, index);
@@ -20,13 +21,16 @@ const FunctionDescription = ( {period, job, description, index, changeItem} ) =>
     setIsJobClicked(!isJobClicked);
   }
 
-  const changeDescription = (e) => {
-    changeItem(e, index);
+  const changeDescription = (event) => {
+    changeItem(event, index);
     setIsDescClicked(!isDescClicked);
   }
 
   const wordCount = (e) => {
+    //Count number of words in textarea
     setIsWordCount(e.target.value.length);
+
+    //
   }
 
 return (
@@ -50,8 +54,11 @@ return (
 
       {isDescClicked ?
         <div>
-        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} onChange={wordCount} maxLength="1000"/>
-        <p id="counter">{isWordCount}/1000 karakters over</p>
+        <ResizableTextArea defaultValue={description}
+                           saveInput={changeDescription}
+                           wordCount={wordCount}
+                           />
+        <p className="bold">{isWordCount}/1000 karakters over</p>
         </div>
         :
         <p className="editable" onClick={() => setIsDescClicked(!isDescClicked)}>{!!(description) ? description : "Voeg een beschrijving toe!"}</p> }

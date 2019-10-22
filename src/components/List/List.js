@@ -18,7 +18,7 @@ const List = ({ list, title, type }) => {
   const removeItem = (id) => {
     //Filter all items except the one to be removed
     const remainder = contentState.filter((el) => {
-      if(el.value !== id) return el;
+      if(el.value !== id) {return el};
     })
     //Change the items
     setContentState(remainder);

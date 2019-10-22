@@ -91,11 +91,17 @@ header {
 }
 
 input, textarea {
-  border: none;
   background: rgba(0, 0, 0, 0);
   cursor: pointer;
   color: #fff;
   text-transform: none;
+  box-sizing: border-box;
+	border: none;
+	resize: none;
+	line-height: 24px;
+	overflow: auto;
+	height: auto;
+	box-shadow: 0px 4px 10px -8px black;
 }
 
 //Header for CV template
@@ -186,6 +192,6 @@ input, textarea {
   font-size: 16px;
 }
 
-#counter {
+.bold {
   font-weight: bold;
 }

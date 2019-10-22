@@ -1,8 +1,6 @@
 import React from "react"
-import { Link } from "gatsby"
 
 //Import components
-import TitleComponent from "../components/TitleComponent"
 import FunctionDescription from "../components/CVcomponents/FunctionDescription"
 import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
@@ -51,10 +49,10 @@ class CV extends React.Component {
     this.setState({headerinfo: newObj})
   }
 
-  changeWorkExp(e, index) {
+  changeWorkExp(event, index) {
     //Get values of event
-    const targetedValue = e.target.id;
-    const newValue = e.target.value;
+    const targetedValue = event.target.id;
+    const newValue = event.target.value;
     const newArr = [...this.state.workexp];
 
     //Change the targeted item
