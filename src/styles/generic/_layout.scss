@@ -99,6 +99,13 @@ input, textarea {
   cursor: pointer;
   color: #fff;
   text-transform: none;
+  box-sizing: border-box;
+	border: none;
+	resize: none;
+	line-height: 24px;
+	overflow: auto;
+	height: auto;
+	box-shadow: 0px 4px 10px -8px black;
 }
 
 //Header for CV template
@@ -145,6 +152,15 @@ input, textarea {
   }
 }
 
+#description {
+   font-size: 12px;
+ }
+
+#title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
 .edit--icon {
   position: absolute;
   bottom: 0px;
@@ -185,6 +201,10 @@ input, textarea {
   color: #000;
   resize: none;
   font-size: 16px;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .titlefield {

@@ -30,14 +30,12 @@ const CVPage = ({ headerinfo, workexp, education, qualities, skills, optional, f
     //Get values of event
     const targetedValue = e.target.id;
     const newValue = e.target.value;
-    //const newArr = [...this.state.workexp];
     const newArr = [...isWorkExp]
 
     //Change the targeted item
     newArr[index][targetedValue] = newValue;
 
     //Setting the state with changed array
-    //this.setState({workexp: newArr});
     setIsWorkExp(newArr);
   }
 
