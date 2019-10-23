@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import logoWhite from "../images/incentro_logo_white.png"
 import deleteIcon from "../images/delete_icon.png"
 import addIcon from "../images/add_icon.png"
+import Button from "../components/CVcomponents/Button"
 
 const BlankCV = ({lastPage, addPage, removePage, index}, props) => {
   const [isHovered, setIsHovered] = useState(false)
@@ -27,8 +28,8 @@ const BlankCV = ({lastPage, addPage, removePage, index}, props) => {
                 {props.children}
               </div>
               <div className="column column--orange">
-              <button className="btn btn--delete btn--small" onClick={removePage2}><img src={deleteIcon} alt="deleteicon" />verwijder</button>
-              {isLastPage&& <button className="btn btn--add btn--small" onClick={addPage}><img src={addIcon} alt="deleteicon" />toevoegen</button>}
+              <Button className={"btn btn--delete btn--small"} onClick={removePage2} name={"verwijder"}><img src={deleteIcon} alt="deleteicon" /></Button>
+              {isLastPage&& <Button className={"btn btn--add btn--small"} onClick={addPage} name={"toevoegen"}><img src={addIcon} alt="deleteicon" /></Button>}
               <img src={logoWhite} alt="logo_white" className="logo"/>
               </div>
             </div>

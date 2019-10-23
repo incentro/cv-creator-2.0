@@ -1,11 +1,12 @@
 import React, { useCallback, useRef, useState } from "react"
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 import FunctionDescription from "../components/CVcomponents/FunctionDescription"
 import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
 import HeaderCV from "../components/CVcomponents/HeaderCV"
-import logoWhite from "../images/incentro_logo_white.png"
+// import logoWhite from "../images/incentro_logo_white.png"
 import addIcon from "../images/add_icon.png"
+import Button from "../components/CVcomponents/Button"
 
   const CVPage = React.forwardRef(({headerinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
@@ -18,6 +19,7 @@ import addIcon from "../images/add_icon.png"
   const [isOptional, setIsOptional] = useState(optional)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
   const [isExtraPages, setIsExtraPages] = useState(extraPages)
+  const [showButton, setShowButton] = useState(false)
 
   const [height, setHeight] = useState(0)
 
@@ -71,6 +73,11 @@ import addIcon from "../images/add_icon.png"
 
   }
 
+  const addButton = () => {
+    console.log('put me back!')
+    setShowButton(true)
+  }
+
   return (
     <div className="cv-wrapper">
       <div className="row">
@@ -92,9 +99,10 @@ import addIcon from "../images/add_icon.png"
             <div className='row'>
               <div className='double-column' ref={ref}>
                 <h1>Werkervaring</h1>
-                {isWorkExp.map((el) => {
+                {isWorkExp.map((el, i) => {
                   return (
                     <FunctionDescription
+                      key={i}
                       period={el.time}
                       job={el.job}
                       description={el.description}
@@ -106,9 +114,10 @@ import addIcon from "../images/add_icon.png"
                 })}
 
                 <h1>Opleidingen {Math.round(height)}px tall</h1>
-                {isEducation.map((el) => {
+                {isEducation.map((el, i) => {
                   return (
                     <FunctionDescription
+                      key={i}
                       period={el.time}
                       job={el.job}
                       description={el.description}
@@ -132,7 +141,14 @@ import addIcon from "../images/add_icon.png"
                 <List list={isSkills} title="Skills" type="decimal" />
                 {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
                 {isHovered && <button className="btn btn--small"> + Add extra list</button>}
-                {isExtraPages ? null : <button className="btn btn--add btn--small" onClick={() => { addPage(); setIsExtraPages(!extraPages); console.log("extraPages:" + extraPages)}} ><img src={addIcon} alt="addicon" />nieuwe pagina</button> }
+                {/* */}
+                {isExtraPages ? null :
+                  <Button className={"btn btn--add btn--small"} onClick={() => { addPage(); setIsExtraPages(!extraPages);
+                  console.log("extraPages:" + extraPages)}} name={"nieuwe pagina"}><img src={addIcon} alt="addicon" />
+                  </Button> }
+                {setShowButton ? null : <Button className={"btn btn--add btn--small"} onClick={() => { addPage(); setIsExtraPages(!extraPages);
+                  console.log("extraPages:" + extraPages)}} name={"nieuwe pagina"}><img src={addIcon} alt="addicon" />
+                </Button> }
               </div>
             </div>
           </div>

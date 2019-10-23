@@ -4,6 +4,8 @@ import ReactDOM from "react-dom"
 //Import components
 import CVPage from "./page-2"
 import BlankCV from "./blank-cv"
+import Button from "../components/CVcomponents/Button"
+import addIcon from "../images/add_icon.png"
 
 //Import SCSS stylesheets
 import("../styles/index.scss")
@@ -57,6 +59,12 @@ class CV extends React.Component {
     console.log("Aantal pagina's:" + this.state.pages.length);
   }
 
+  /* If pages == 2 and there's clicked on delete page, show button to add page on page 1 */
+  handleClick = () => {
+    console.log('i am back!')
+    this.childRef.current.addButton()
+  }
+
   //Remove a page
   removePage = (e, index) => {
     this.state.pages.splice(index, 1);
@@ -64,6 +72,7 @@ class CV extends React.Component {
 
     if (this.state.pages.length === 0) {
       console.log("Er zijn geen extra pages")
+      this.handleClick()
       this.setState({extraPages: false})
     }
   }
@@ -79,7 +88,7 @@ class CV extends React.Component {
                   qualities={this.state.qualities}
                   skills={this.state.skills}
                   optional={this.state.optional}
-                  ref={this.childRef}
+                  childref={this.childRef}
                   showHeight={this.showHeightInConsole}
                   checkBool={this.changeBool}
                   addPage={this.addPage}
@@ -89,9 +98,9 @@ class CV extends React.Component {
           const pageLength = this.state.pages.length;
           console.log("Statement true?:" + (pageLength === index +1))
           return (
-                  <BlankCV lastPage={pageLength === index + 1} addPage={this.addPage} removePage={this.removePage} index={index}>
-                  <h1>Hallo</h1>
-                  </BlankCV>)
+            <BlankCV lastPage={pageLength === index + 1} addPage={this.addPage} removePage={this.removePage} index={index}>
+              <h1>Hallo</h1>
+            </BlankCV>)
           })}
 
       </div>
