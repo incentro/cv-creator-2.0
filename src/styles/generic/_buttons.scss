@@ -31,8 +31,30 @@ $border-radius-btn: 5px;
     margin-left: 10px;
     font-size: 10px;
   }
-  &--green {
-    background-color: green;
+  &--add {
+    background-color: $green-color;
+    opacity: 0.5;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: opacity 500ms ease;
     color: white;
+    font-size: 14px;
+    width: 150px;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &--delete {
+    background-color: $red-color;
+    transition: opacity 500ms ease;
+    opacity: 0.5;
+    color: white;
+    border: 1px solid white;
+    width: 130px;
+    font-size: 14px;
+    font-weight: bold;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
