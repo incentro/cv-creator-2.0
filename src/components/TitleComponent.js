@@ -2,7 +2,6 @@ import React, { useState } from "react"
 
 const TitleComponent = ({ title, changeTitle }) => {
 
-  const [useTitle, setTitle] = useState(title);
   const [isClicked, setIsClicked] = useState(false)
 
   const toggleClick = () => {

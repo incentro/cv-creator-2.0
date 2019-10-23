@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 //Importing components
 import orangeCircle from "../../images/circle_orange.png"
+import ResizableTextArea from "../CVcomponents/ResizableTextArea"
 
 const FunctionDescription = ( {period, checkBool, job, description, index, changeItem, showHeight} ) => {
   const [isClicked, setIsClicked] = useState(false)
@@ -10,6 +11,8 @@ const FunctionDescription = ( {period, checkBool, job, description, index, chang
   const [isDescClicked, setIsDescClicked] = useState(false)
   const [isCheckHeight, setCheckHeight] = useState(true)
   const [isCheckBool, setCheckBool] = useState(checkBool)
+  const [isWordCount, setIsWordCount] = useState(description.length);
+  const [numberOfRows, setNumberOfRows] = useState(1);
 
   const changeTime = (e) => {
     changeItem(e, index);
@@ -27,6 +30,13 @@ const FunctionDescription = ( {period, checkBool, job, description, index, chang
     changeItem(e, index);
     setIsDescClicked(!isDescClicked);
     checkBool();
+  }
+
+  const wordCount = (e) => {
+    //Count number of words in textarea
+    setIsWordCount(e.target.value.length);
+
+    //
   }
 
 return (
@@ -51,6 +61,13 @@ return (
       {isDescClicked ?
         <div>
         <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} />
+        </div>
+        <div>
+        <ResizableTextArea defaultValue={description}
+                           saveInput={changeDescription}
+                           wordCount={wordCount}
+                           />
+        <p className="bold">{isWordCount}/1000 karakters over</p>
         </div>
         :
         <div>
