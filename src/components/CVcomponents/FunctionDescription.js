@@ -2,9 +2,10 @@ import React, { useState } from "react"
 
 //Importing components
 import orangeCircle from "../../images/circle_orange.png"
+import deleteIcon from "../../images/delete_icon.png"
 
-const FunctionDescription = ( {period, checkBool, job, description, index, changeItem, showHeight} ) => {
-  const [isClicked, setIsClicked] = useState(false)
+const FunctionDescription = ( {period, checkBool, job, description, index, changeItem, removeWorkExp, removeEducation, workExp, education} ) => {
+  const [isHovered, setIsHovered] = useState(false)
   const [isTimeClicked, setIsTimeClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
   const [isDescClicked, setIsDescClicked] = useState(false)
@@ -29,23 +30,34 @@ const FunctionDescription = ( {period, checkBool, job, description, index, chang
     checkBool();
   }
 
+  const deleteExp = (e) => {
+    if (workExp == true) {
+      removeWorkExp(e, index);
+    }
+    if (education == true) {
+      removeEducation(e, index);
+    }
+  }
+
 return (
   <div className="row">
     <div className="column timeline">
       <img src={orangeCircle} alt="orangecircle"/>
     </div>
-    <div className="column function">
+    <div className="column function" onMouseEnter={() => setIsHovered(!isHovered)} onMouseLeave={() => setIsHovered(!isHovered)}>
 
       {isTimeClicked ?
         <input type="text" defaultValue={period} id="time" className="timestamp" autoFocus onBlur={changeTime}/>
         :
-        <p className="timestamp editable" onClick={() => {setIsJobClicked(!isJobClicked); setCheckHeight(false)}}>{!!(period) ? period : "Vul een periode in!"}</p>
+        <p className="timestamp editable" onClick={() => {setIsTimeClicked(!isJobClicked); setCheckHeight(false)}}>{!!(period) ? period : "Vul een periode in!"}</p>
       }
 
       {isJobClicked ?
         <input type="text" defaultValue={job} className="jobtitle" id="job" autoFocus onBlur={changeJob}/>
         :
+        <div>
         <h2 className="editable" onClick={() => {setIsJobClicked(!isJobClicked); setCheckHeight(!isCheckHeight)}}>{!!(job) ? job : "Vul een functietitel in!"}</h2>
+        </div>
       }
 
       {isDescClicked ?
@@ -54,9 +66,10 @@ return (
         </div>
         :
         <div>
-        <p className="editable" onClick={() => {setIsDescClicked(!isDescClicked); checkBool()}}>{description}</p>
+        <p className="editable" onClick={() => {setIsDescClicked(!isDescClicked); checkBool()}}>{!!(description) ? description : "Vul een beschrijving in!"}</p>
         </div>
       }
+      {isHovered&& <button className="btn btn--delete btn--small" onClick={deleteExp}><img src={deleteIcon} /> Verwijder</button>}
 
     </div>
   </div>  )
