@@ -4,8 +4,6 @@ import ReactDOM from "react-dom"
 //Import components
 import CVPage from "./page-2"
 import BlankCV from "./blank-cv"
-import Button from "../components/CVcomponents/Button"
-import addIcon from "../images/add_icon.png"
 
 //Import SCSS stylesheets
 import("../styles/index.scss")
@@ -88,7 +86,7 @@ class CV extends React.Component {
                   qualities={this.state.qualities}
                   skills={this.state.skills}
                   optional={this.state.optional}
-                  childref={this.childRef}
+                  ref={this.childRef}
                   showHeight={this.showHeightInConsole}
                   checkBool={this.changeBool}
                   addPage={this.addPage}

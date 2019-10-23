@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react"
+import React, { forwardRef, useCallback, useRef, useState } from "react"
 // import ReactDOM from 'react-dom'
 import FunctionDescription from "../components/CVcomponents/FunctionDescription"
 import UserInfo from "../components/CVcomponents/UserInfo"
@@ -8,7 +8,7 @@ import HeaderCV from "../components/CVcomponents/HeaderCV"
 import addIcon from "../images/add_icon.png"
 import Button from "../components/CVcomponents/Button"
 
-  const CVPage = React.forwardRef(({headerinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
+const CVPage = React.forwardRef(({headerinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isExtraList, setIsExtraList] = useState(false)
   const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
@@ -73,13 +73,15 @@ import Button from "../components/CVcomponents/Button"
 
   }
 
+  let pageRef = React.createRef()
   const addButton = () => {
     console.log('put me back!')
     setShowButton(true)
   }
 
   return (
-    <div className="cv-wrapper">
+    <div className="cv-wrapper" ref={pageRef}>
+
       <div className="row">
         <div className="column">
         </div>
