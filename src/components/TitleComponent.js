@@ -2,7 +2,6 @@ import React, { useState } from "react"
 
 const TitleComponent = ({ title, changeTitle }) => {
 
-  const [useTitle, setTitle] = useState(title);
   const [isClicked, setIsClicked] = useState(false)
 
   const toggleClick = () => {
@@ -18,7 +17,7 @@ const TitleComponent = ({ title, changeTitle }) => {
     <div className="editable" onClick={toggleClick}>
       {isClicked ?
         <div>
-          <input type="text" id="title" defaultValue={title} onClick autoFocus onBlur={combineFunc}/>
+          <input type="text" id="title" className="titlefield" defaultValue={title} onClick autoFocus onBlur={combineFunc}/>
         </div>
         :
         <h1>{!!(title) ? title : "<Vul hier je informatie aan>" }</h1>

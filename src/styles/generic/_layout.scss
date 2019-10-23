@@ -46,7 +46,6 @@ header {
   flex: 1;
   &--orange {
     background-color: $primary-color;
-    //position: relative;
     height: $a4-height;
     padding: $padding;
     h1 {
@@ -72,6 +71,13 @@ header {
 .function {
     flex: 10;
     margin: 20px 25px;
+  h2{
+      font-family: $main-font;
+  }
+  textarea {
+    font-size: inherit;
+  }
+
 }
 
 .timeline {
@@ -93,6 +99,13 @@ input, textarea {
   cursor: pointer;
   color: #fff;
   text-transform: none;
+  box-sizing: border-box;
+	border: none;
+	resize: none;
+	line-height: 24px;
+	overflow: auto;
+	height: auto;
+	box-shadow: 0px 4px 10px -8px black;
 }
 
 //Header for CV template
@@ -104,6 +117,7 @@ input, textarea {
         color: #fff;
         font-size: 36px;
         text-transform: none;
+        font-family: $main-font;
     }
     p {
         color: #fff;
@@ -113,12 +127,18 @@ input, textarea {
       background: rgba(0, 0, 0, 0);
       cursor: pointer;
       color: #fff;
+      font-size: $h1-font-size;
       text-transform: none;
+      margin-bottom: 1.45rem;
     }
   textarea {
-    width: 950px;
-    height: 100px;
+    width: 900px;
+    height: 125px;
     resize: none;
+    font-size: 16px;
+  }
+  input {
+    font-weight: bold;
   }
   }
 
@@ -183,3 +203,12 @@ input, textarea {
   font-size: 16px;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.titlefield {
+  font-size: $h1-font-size;
+  font-weight: bold;
+  text-transform: lowercase;
+}
