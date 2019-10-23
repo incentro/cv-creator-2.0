@@ -100,8 +100,6 @@ import educationIcon from "../images/education_icon.png"
     setIsEducation(newArr);
   }
 
-
-
   return (
     <div className="cv-wrapper">
       <div className="row">

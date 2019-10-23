@@ -65,15 +65,10 @@ return (
       {isJobClicked ?
         <input type="text" defaultValue={job} className="jobtitle" id="job" autoFocus onBlur={changeJob}/>
         :
-        <div>
         <h2 className="editable" onClick={() => {setIsJobClicked(!isJobClicked); setCheckHeight(!isCheckHeight)}}>{!!(job) ? job : "Vul een functietitel in!"}</h2>
-        </div>
       }
 
       {isDescClicked ?
-        <div>
-        <textarea defaultValue={description} className="description" id="description" autoFocus onBlur={changeDescription} />
-        </div>
         <div>
         <ResizableTextArea defaultValue={description}
                            saveInput={changeDescription}

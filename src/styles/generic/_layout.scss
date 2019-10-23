@@ -46,6 +46,7 @@ header {
   flex: 1;
   &--orange {
     background-color: $primary-color;
+    position: relative;
     height: $a4-height;
     padding: $padding;
     h1 {
