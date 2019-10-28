@@ -48,7 +48,7 @@ import educationIcon from "../images/education_icon.png"
   ////Work experience functions
   //Add a new work experience
   const addWorkExp = (e) => {
-    const newWorkExp = [...isWorkExp, isWorkExp]
+    const newWorkExp = [...isWorkExp, {id:1, job: "Vul functietitel in...", description: "Schrijf een kort, maar krachtige beschrijving...", time: "Vul hier een periode"}]
     setIsWorkExp(newWorkExp)
   }
 
@@ -75,7 +75,7 @@ import educationIcon from "../images/education_icon.png"
   ////Education functions
   //Add a new education
   const addEducation = (e) => {
-    const newEducation = [...isEducation, isEducation]
+    const newEducation = [...isEducation, {job: "Vul hier een functie in", description: "Vul hier een beschrijving in.", time: "Vul hier periode in."}]
     setIsEducation(newEducation);
   }
   
@@ -115,6 +115,7 @@ import educationIcon from "../images/education_icon.png"
                   job={isHeaderInfo.job}
                   description={isHeaderInfo.description}
                   changeHeader={changeHeader}
+                  headerinfo={headerinfo}
                 />}
               </div>
             </div>
@@ -168,11 +169,6 @@ import educationIcon from "../images/education_icon.png"
                 <List list={isSkills} title="Skills" type="decimal" />
                 {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
                 {isHovered && <button className="btn btn--small"> + Add extra list</button>}
-                { isExtraPages ?
-                  null :
-                  <Button name="nieuwe pagina" className="btn btn--add btn--small" onClick={() => { addPage(); setIsExtraPages(!extraPages);
-                  console.log("extraPages:" + extraPages)}} ><img src={addIcon} alt="addicon" /></Button>
-                }
               </div>
             </div>
           </div>
