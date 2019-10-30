@@ -1,5 +1,5 @@
 import React from "react"
-import ReactDOM from "react-dom"
+
 
 //Import components
 import CVPage from "./page-2"
@@ -15,14 +15,31 @@ class CV extends React.Component {
     this.heightDiv = null;
     this.extraPage = false;
     this.state = {
-      headerinfo: {name: "Sander van Rijsoort", job: "Front-end Developer", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-      workexp: [{id:1, job: "Back-end Developer @ Coop", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
-        {id:2, job: "Front-end Developer @ Incentro", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
-      education: [{id:1, job: "Bedrijfskunde @ Erasmus Universiteit", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
-        {id:2, job: "Strategic Entrepreneurship @ Erasmus", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
-      qualities:  [{id:1, value: "teamplayer"},{id:2, value: "hardwerkend"},{id:3, value: "sociaal"}],
-      skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
-      optional: [{id:1, value: "Overige kwaliteiten"}],
+      userInfo: { 
+        headerinfo: { 
+          name: "Sander van Rijsoort",
+          job: "Front-end Developer",
+          description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+        },
+        basicinfo: {
+          email: "sander.vanrijsoort@incentro.com",
+          phone: "06-43499341",
+          birthday: "23 april 1993", 
+          website: "https://www", 
+          residence: "Amsterdam"
+        },
+        workexp: [
+          {job: "Back-end Developer @ Coop", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
+          {job: "Front-end Developer @ Incentro", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}
+        ],
+        education: [
+          {job: "Bedrijfskunde @ Erasmus Universiteit", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
+          {job: "Strategic Entrepreneurship @ Erasmus", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}
+        ],
+        qualities: [{id:1, value: "teamplayer"},{id:2, value: "hardwerkend"},{id:3, value: "sociaal"}],
+        skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
+        optional: [{id:1, value: "Overige kwaliteiten"}]},
+      secondInfo : {},
       pages: [],
       heightDiv: null,
       checkHeight: true,
@@ -31,9 +48,13 @@ class CV extends React.Component {
      };
   }
 
-  componentDidMount() {
-    this.heightDiv = this.childRef.current.offsetHeight;
-    console.log("heightDiv:" + this.heightDiv);
+  componentWillMount() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
+    if (userData) {
+    this.setState({
+      userInfo : userData
+    })}
   }
 
   //Get new height of the content column
@@ -72,13 +93,15 @@ class CV extends React.Component {
     return (
       <div>
           <CVPage firstPage={true}
-                  headerinfo={this.state.headerinfo}
-                  extraPages={this.state.extraPages}
-                  workexp={this.state.workexp}
-                  education={this.state.education}
-                  qualities={this.state.qualities}
-                  skills={this.state.skills}
-                  optional={this.state.optional}
+                  userInfo = { this.state.userInfo}
+                  basicinfo = {this.state.userInfo.basicinfo}
+                  headerinfo= {this.state.userInfo.headerinfo}
+                  extraPages={this.state.userInfo.extraPages}
+                  workexp={this.state.userInfo.workexp}
+                  education={this.state.userInfo.education}
+                  qualities={this.state.userInfo.qualities}
+                  skills={this.state.userInfo.skills}
+                  optional={this.state.userInfo.optional}
                   ref={this.childRef}
                   showHeight={this.showHeightInConsole}
                   checkBool={this.changeBool}

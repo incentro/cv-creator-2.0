@@ -1,5 +1,4 @@
 import React, { useCallback, useRef, useState } from "react"
-import ReactDOM from 'react-dom'
 import FunctionDescription from "../components/CVcomponents/FunctionDescription"
 import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
@@ -12,7 +11,7 @@ import addIcon from "../images/add_icon.png"
 import workIcon from "../images/work_icon.png"
 import educationIcon from "../images/education_icon.png"
 
-  const CVPage = React.forwardRef(({headerinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
+  const CVPage = React.forwardRef(({userInfo, headerinfo, basicinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isExtraList, setIsExtraList] = useState(false)
   const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
@@ -23,6 +22,9 @@ import educationIcon from "../images/education_icon.png"
   const [isOptional, setIsOptional] = useState(optional)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
   const [isExtraPages, setIsExtraPages] = useState(extraPages)
+  const [isUserInfo, setUserInfo] = useState(userInfo);
+  const [isInfo, setInfo] = useState(basicinfo);
+
 
   const [height, setHeight] = useState(0)
 
@@ -43,13 +45,25 @@ import educationIcon from "../images/education_icon.png"
 
       newObj[targetedValue] = newValue;
       setIsHeaderInfo(newObj);
+
+      //Save header locally
+      const oldInfo = {...isUserInfo};
+      oldInfo.headerinfo[targetedValue] = newValue;
+      setUserInfo(oldInfo);
+      localStorage.setItem("userData", JSON.stringify(oldInfo));
     }
 
   ////Work experience functions
   //Add a new work experience
   const addWorkExp = (e) => {
-    const newWorkExp = [...isWorkExp, isWorkExp]
+    const newWorkExp = [...isWorkExp, {job: "Vul hier een functie in", description: "Vul hier een beschrijving in.", time: "Vul hier periode in."}]
     setIsWorkExp(newWorkExp)
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.workexp = newWorkExp;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   //Remove an exisiting workexperience
@@ -57,6 +71,12 @@ import educationIcon from "../images/education_icon.png"
     const newWorkExp = [...isWorkExp];
     newWorkExp.splice(index, 1);
     setIsWorkExp(newWorkExp);
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.workexp = newWorkExp;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   const changeWorkExp = (e, index) => {
@@ -70,13 +90,25 @@ import educationIcon from "../images/education_icon.png"
 
     //Setting the state with changed array
     setIsWorkExp(newArr);
+
+    //Save changes local
+    const oldInfo = {...isUserInfo};
+    oldInfo.workexp[index][targetedValue] = newValue;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   ////Education functions
   //Add a new education
   const addEducation = (e) => {
-    const newEducation = [...isEducation, isEducation]
+    const newEducation = [...isEducation, {job: "Vul hier een functie in", description: "Vul hier een beschrijving in.", time: "Vul hier periode in."}]
     setIsEducation(newEducation);
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.education = newEducation;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
   
   //Remove an exisiting workexperience
@@ -84,6 +116,12 @@ import educationIcon from "../images/education_icon.png"
     const remEducation = [...isEducation];
     remEducation.splice(index, 1);
     setIsEducation(remEducation);
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.education = remEducation;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   //Edit exisiting education
@@ -98,6 +136,12 @@ import educationIcon from "../images/education_icon.png"
 
     //Setting the state with changed array
     setIsEducation(newArr);
+
+    //Save changes local
+    const oldInfo = {...isUserInfo};
+    oldInfo.education[index][targetedValue] = newValue;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   return (
@@ -122,7 +166,6 @@ import educationIcon from "../images/education_icon.png"
               <div className='double-column' ref={ref}>
                 <h1>Werkervaring</h1>
                 {isWorkExp.map((el, index) => {
-                  localStorage.setItem("workexp" + index + "time", el.time);
                   return (
                     <FunctionDescription
                       period={el.time}
@@ -158,14 +201,14 @@ import educationIcon from "../images/education_icon.png"
               </div>
               <div className="column column--orange" onMouseEnter={() => {setIsHovered(!isHovered)}} onMouseLeave={() => {setIsHovered(!isHovered)}} style={{height: "1011px"}}>
                 <h1>Info</h1>
-                <UserInfo item="email" info="sander.vanrijsoort@incentro.com"/>
-                <UserInfo item="telefoon" info="06-43499341"/>
-                <UserInfo item="geboortedatum" info="23 april 1993"/>
-                <UserInfo item="website (optioneel)" info="https://www"/>
-                <UserInfo item="woonplaats" info="Amsterdam"/>
+                <UserInfo item="email" id="email" info = {isInfo.email} userInfo = {userInfo}/>
+                <UserInfo item="telefoon" id="phone" info= {isInfo.phone} userInfo = {userInfo} />
+                <UserInfo item="geboortedatum" id="birthday" info= {isInfo.birthday} userInfo = {userInfo}/>
+                <UserInfo item="website (optioneel)" id="website" info= {isInfo.website} userInfo = {userInfo}/>
+                <UserInfo item="woonplaats" id="residence" info= {isInfo.residence} userInfo = {userInfo}/>
 
-                <List list={isQual} title="Kwaliteiten" />
-                <List list={isSkills} title="Skills" type="decimal" />
+                <List list={isQual} title="Kwaliteiten" userInfo = {userInfo} listName="qualities" />
+                <List list={isSkills} title="Skills" type="decimal" userInfo = {userInfo} listName="skills" />
                 {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
                 {isHovered && <button className="btn btn--small"> + Add extra list</button>}
                 { isExtraPages ?
