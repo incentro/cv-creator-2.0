@@ -122,6 +122,7 @@ import educationIcon from "../images/education_icon.png"
               <div className='double-column' ref={ref}>
                 <h1>Werkervaring</h1>
                 {isWorkExp.map((el, index) => {
+                  localStorage.setItem("workexp" + index + "time", el.time);
                   return (
                     <FunctionDescription
                       period={el.time}
@@ -134,8 +135,7 @@ import educationIcon from "../images/education_icon.png"
                       checkBool={checkBool}
                       workExp={true}
                       education={false}
-                    />)
-                })}
+                    />)})}
                 <button className="btn btn--add btn--small" onClick={addWorkExp}><img src={workIcon} /> Werkervaring toevoegen</button>
 
                 <h1>Opleidingen {Math.round(height)}px tall</h1>
