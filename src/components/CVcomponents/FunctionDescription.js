@@ -3,6 +3,7 @@ import React, { useState } from "react"
 //Importing components
 import orangeCircle from "../../images/circle_orange.png"
 import deleteIcon from "../../images/delete_icon.png"
+import closeIcon from "../../images/close_icon.png"
 import ResizableTextArea from "../CVcomponents/ResizableTextArea"
 
 const FunctionDescription = ( {period, checkBool, job, description, index, changeItem, removeWorkExp, removeEducation, workExp, education} ) => {
@@ -55,11 +56,15 @@ return (
       <img src={orangeCircle} alt="orangecircle"/>
     </div>
     <div className="column function" onMouseEnter={() => setIsHovered(!isHovered)} onMouseLeave={() => setIsHovered(!isHovered)}>
-
+      <div className="deletebtn">
+      {isHovered&& <button className="btn btn--cross" onClick={deleteExp}><img src={deleteIcon} /></button>}
+      </div>  
       {isTimeClicked ?
         <input type="text" defaultValue={period} id="time" className="timestamp" autoFocus onBlur={changeTime}/>
         :
-        <p className="timestamp editable" onClick={() => {setIsTimeClicked(!isJobClicked); setCheckHeight(false)}}>{!!(period) ? period : "Vul een periode in!"}</p>
+        <div className="field">
+          <p className="timestamp editable" onClick={() => {setIsTimeClicked(!isJobClicked); setCheckHeight(false)}}>{!!(period) ? period : "Vul een periode in!"}</p>
+        </div>
       }
 
       {isJobClicked ?
@@ -81,9 +86,7 @@ return (
         <p className="editable" onClick={() => {setIsDescClicked(!isDescClicked); checkBool()}}>{!!(description) ? description : "Vul een beschrijving in!"}</p>
         </div>
       }
-      {isHovered&& <button className="btn btn--delete btn--small" onClick={deleteExp}><img src={deleteIcon} /> Verwijder</button>}
-
-    </div>
+      </div>
   </div>  )
 };
 export default FunctionDescription;
