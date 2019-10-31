@@ -10,7 +10,7 @@ const List = ({ list, title, type }) => {
 
   //Adding items to the list
   const addItem = () => {
-    const newItem = [...contentState, {title}];
+    const newItem = [...contentState, "Nieuw item"];
     setContentState(newItem);
   }
 
@@ -18,7 +18,7 @@ const List = ({ list, title, type }) => {
   const removeItem = (id) => {
     //Filter all items except the one to be removed
     const remainder = contentState.filter((el) => {
-      if(el.value !== id) {return el};
+      if(el !== id) {return el};
     })
     //Change the items
     setContentState(remainder);
@@ -27,7 +27,7 @@ const List = ({ list, title, type }) => {
   //Changing list item and saving
   const changeItem = (e, index) => {
     const newArr = [...contentState];
-    newArr[index].value = e.target.value;
+    newArr[index] = e.target.value;
     setContentState(newArr);
   }
 
@@ -64,8 +64,8 @@ const List = ({ list, title, type }) => {
       <ul className={listStyle}>
         {contentState.map((el, index) => {
           return (
-            <ListItem item={el.value}
-                      key={el.value}
+            <ListItem item={el}
+                      key={el}
                       index={index}
                       removeItem={removeItem}
                       changeItem={changeItem}
