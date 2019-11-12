@@ -20,6 +20,21 @@ $border-radius-btn: 5px;
       background-color: $secondary-color;
     }
   }
+  &--cross {
+    background-color: red;
+    opacity: 0.5;
+    padding: 0;
+    color: white;
+    width: 20px;
+    height: 25px;
+    position: absolute;
+    transition: opacity 500ms ease;
+    right: 0;
+    top: 0;
+    &:hover {
+      opacity: 1;
+    }
+  }
   &--big {
     padding: $btn-big-padding;
   }
