@@ -12,18 +12,14 @@ import addIcon from "../images/add_icon.png"
 import workIcon from "../images/work_icon.png"
 import educationIcon from "../images/education_icon.png"
 
-  const CVPage = React.forwardRef(({headerinfo, checkBool, extraLists, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
+  const CVPage = React.forwardRef(({headerinfo, checkBool, extraLists, inputRef, workexp, education, lists, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
   const [isWorkExp, setIsWorkExp] = useState(workexp)
   const [isEducation, setIsEducation] = useState(education)
-  const [isQual, setIsQual] = useState(qualities)
-  const [isSkills, setIsSkills] = useState(skills)
-  const [isOptional, setIsOptional] = useState(optional)
+  const [isLists, setExtraList] = useState(lists);
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
   const [isExtraPages, setIsExtraPages] = useState(extraPages)
-  const [isExtraLists, setExtraList] = useState(extraLists);
-
   const [height, setHeight] = useState(0)
 
   const measuredRef = useCallback(node => {
@@ -36,7 +32,7 @@ import educationIcon from "../images/education_icon.png"
 
   //Add new list
   const addList = () => {
-    const newList = [...isExtraLists, {title: "Nieuwe lijst", values: ["nieuw item"]}];
+    const newList = [...isLists, {title: "Nieuwe lijst", values: ["nieuw item"]}];
     setExtraList(newList);
   }
 
@@ -171,9 +167,12 @@ import educationIcon from "../images/education_icon.png"
                 <UserInfo item="website (optioneel)" info="https://www"/>
                 <UserInfo item="woonplaats" info="Amsterdam"/>
 
-                {isExtraLists.map((el) => {
+                {isLists.map((el) => {
                   return (
-                    <List list={el.values} title={el.title} />       
+                    <List list={el.values}
+                          title={el.title} 
+                          key={el.id} 
+                          />       
                   )
                 }
                 )}

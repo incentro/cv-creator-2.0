@@ -20,7 +20,7 @@ class CV extends React.Component {
         {id:2, job: "Front-end Developer @ Incentro", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
       education: [{id:1, job: "Bedrijfskunde @ Erasmus Universiteit", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
         {id:2, job: "Strategic Entrepreneurship @ Erasmus", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
-      extralists: [
+      lists: [
         {
           title: "Kwaliteiten",
           values: ["teamplayer", "hardwerkend", "sociaal"]},
@@ -81,9 +81,7 @@ class CV extends React.Component {
                   extraPages={this.state.extraPages}
                   workexp={this.state.workexp}
                   education={this.state.education}
-                  qualities={this.state.extralists.qualities}
-                  skills={this.state.extralists.skills}
-                  extraLists={this.state.extralists}
+                  lists={this.state.lists}
                   ref={this.childRef}
                   showHeight={this.showHeightInConsole}
                   checkBool={this.changeBool}
