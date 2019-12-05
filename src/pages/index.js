@@ -1,6 +1,5 @@
 import React from "react"
 
-
 //Import components
 import CVPage from "./page-2"
 import BlankCV from "./blank-cv"
@@ -11,9 +10,6 @@ import("../styles/index.scss")
 class CV extends React.Component {
   constructor(props) {
     super(props);
-    this.childRef = React.createRef();
-    this.heightDiv = null;
-    this.extraPage = false;
     this.state = {
       userInfo: { 
         headerinfo: { 
@@ -39,12 +35,7 @@ class CV extends React.Component {
         qualities: [{id:1, value: "teamplayer"},{id:2, value: "hardwerkend"},{id:3, value: "sociaal"}],
         skills: [{id:1, value: "HTML"},{id:2, value: "CSS"},{id:3, value: "Javascript"},{id:4, value: "React"}],
         optional: [{id:1, value: "Overige kwaliteiten"}]},
-      secondInfo : {},
       pages: [],
-      heightDiv: null,
-      checkHeight: true,
-      numberOfPages: 2,
-      extraPages: false,
      };
   }
 
@@ -57,12 +48,12 @@ class CV extends React.Component {
     })}
   }
 
-  //Get new height of the content column
+  //Get new height of the content column + zal later toegevoegd worden
   componentDidUpdate() {
-    this.heightDiv = this.childRef.current.offsetHeight;
-    console.log("Height Div Nieuw:" + this.heightDiv);
-    this.extraPage = this.heightDiv > 980;
-    console.log("Extra pagina nodig:" + this.extraPage);
+    //this.heightDiv = this.childRef.current.offsetHeight;
+    //console.log("Height Div Nieuw:" + this.heightDiv);
+    //this.extraPage = this.heightDiv > 980;
+    //console.log("Extra pagina nodig:" + this.extraPage);
   }
 
   //Check if height was changed
@@ -92,21 +83,9 @@ class CV extends React.Component {
   render() {
     return (
       <div>
-          <CVPage firstPage={true}
-                  userInfo = { this.state.userInfo}
-                  basicinfo = {this.state.userInfo.basicinfo}
-                  headerinfo= {this.state.userInfo.headerinfo}
-                  extraPages={this.state.userInfo.extraPages}
-                  workexp={this.state.userInfo.workexp}
-                  education={this.state.userInfo.education}
-                  qualities={this.state.userInfo.qualities}
-                  skills={this.state.userInfo.skills}
-                  optional={this.state.userInfo.optional}
-                  ref={this.childRef}
-                  showHeight={this.showHeightInConsole}
-                  checkBool={this.changeBool}
-                  addPage={this.addPage}
-                  />
+          <CVPage userInfo = {this.state.userInfo}
+                  firstPage = {true}
+          />
 
         {this.state.pages.map((el, index) => {
           const pageLength = this.state.pages.length;

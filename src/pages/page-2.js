@@ -6,26 +6,23 @@ import HeaderCV from "../components/CVcomponents/HeaderCV"
 import Button from "../components/CVcomponents/Button"
 
 //Import images
-import logoWhite from "../images/incentro_logo_white.png"
 import addIcon from "../images/add_icon.png"
 import workIcon from "../images/work_icon.png"
 import educationIcon from "../images/education_icon.png"
 
-  const CVPage = React.forwardRef(({userInfo, headerinfo, basicinfo, checkBool, inputRef, workexp, education, qualities, skills, optional, firstPage, showHeight, addPage, extraPages}, ref) => {
+  const CVPage = React.forwardRef(({userInfo, checkBool, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isExtraList, setIsExtraList] = useState(false)
-  const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
-  const [isWorkExp, setIsWorkExp] = useState(workexp)
-  const [isEducation, setIsEducation] = useState(education)
-  const [isQual, setIsQual] = useState(qualities)
-  const [isSkills, setIsSkills] = useState(skills)
-  const [isOptional, setIsOptional] = useState(optional)
+  const [isHeaderInfo, setIsHeaderInfo] = useState(userInfo.headerinfo)
+  const [isWorkExp, setIsWorkExp] = useState(userInfo.workexp)
+  const [isEducation, setIsEducation] = useState(userInfo.education)
+  const [isQual, setIsQual] = useState(userInfo.qualities)
+  const [isSkills, setIsSkills] = useState(userInfo.skills)
+  const [isOptional, setIsOptional] = useState(userInfo.optional)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
   const [isExtraPages, setIsExtraPages] = useState(extraPages)
   const [isUserInfo, setUserInfo] = useState(userInfo);
-  const [isInfo, setInfo] = useState(basicinfo);
-
-
+  const [isInfo, setInfo] = useState(userInfo.basicinfo);
   const [height, setHeight] = useState(0)
 
   const measuredRef = useCallback(node => {
