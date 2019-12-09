@@ -10,12 +10,13 @@ import addIcon from "../images/add_icon.png"
 import workIcon from "../images/work_icon.png"
 import educationIcon from "../images/education_icon.png"
 
-  const CVPage = React.forwardRef(({headerinfo, checkBool, extraLists, inputRef, workexp, education, lists, firstPage, showHeight, addPage, extraPages}, ref) => {
+  const CVPage = React.forwardRef(({userInfo, checkBool, extraLists, inputRef, workexp, education, lists, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
-  const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
-  const [isWorkExp, setIsWorkExp] = useState(workexp)
-  const [isEducation, setIsEducation] = useState(education)
-  const [isLists, setExtraList] = useState(lists);
+  const [isUserInfo, setUserInfo] = useState(userInfo)
+  const [isHeaderInfo, setIsHeaderInfo] = useState(userInfo.headerinfo)
+  const [isWorkExp, setIsWorkExp] = useState(userInfo.workexp)
+  const [isEducation, setIsEducation] = useState(userInfo.education)
+  const [isLists, setExtraList] = useState(userInfo.lists)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
   const [isExtraPages, setIsExtraPages] = useState(extraPages)
   const [height, setHeight] = useState(0)

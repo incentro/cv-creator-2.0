@@ -8,9 +8,7 @@ import BlankCV from "./blank-cv"
 import("../styles/index.scss")
 
 class CV extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       userInfo: { 
         headerinfo: { 
           name: "Sander van Rijsoort",
@@ -37,7 +35,6 @@ class CV extends React.Component {
         optional: [{id:1, value: "Overige kwaliteiten"}]},
       pages: [],
      };
-  }
 
   componentWillMount() {
     const userData = JSON.parse(localStorage.getItem("userData"));
