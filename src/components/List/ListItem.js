@@ -19,13 +19,12 @@ const ListItem = ({ changeItem, item, key, index, removeItem }) => {
       {isClicked ?
         <input type="text" id={key} defaultValue={item} autoFocus onBlur={changeListItem}/>
         :
-        <li key={key}> {!!(item) ? item : "<Vul hier je informatie aan>"}
-          {isHovered &&
-            <div className="edit--icons">
-              <img src={changeIcon} alt="change_icon" onClick={() => setIsClicked(!isClicked)}/>
-              <img src={deleteIcon} alt="delete_icon" onClick={() => removeItem(item)}/>
-            </div>}
-        </li>}
+        <div className="edit--icons">
+          <li key={key} onClick={() => setIsClicked(!isClicked)}> {!!(item) ? item : "<Vul hier je informatie aan>"}
+            {isHovered &&
+                <img src={deleteIcon} alt="delete_icon" onClick={() => removeItem(item)}/>}
+          </li>
+        </div>}
     </div>)
 }
 export default ListItem

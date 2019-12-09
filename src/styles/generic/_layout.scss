@@ -78,7 +78,16 @@ header {
   textarea {
     font-size: inherit;
   }
+}
 
+.deletebutton {
+  display: flex;
+  flex: 1;
+}
+
+.field {
+  display: flex;
+  flex: 4;
 }
 
 .timeline {
@@ -172,8 +181,8 @@ input, textarea {
 }
 
 .edit--icons {
-  display: inline-block;
-  margin-left: 10px;
+  display: flex;
+  width: 100%;
 }
 
 .logo {
