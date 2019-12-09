@@ -13,9 +13,6 @@ class CV extends React.Component {
   constructor(props) {
     super(props);
     this.childRef = React.createRef();
-    this.heightDiv = null;
-    this.extraPage = false;
-    this.pages = [];
     this.state = {
         headerinfo: {name: "Sander van Rijsoort", job: "Front-end Developer", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
         workexp: [{id:1, job: "Back-end Developer @ Coop", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
@@ -100,9 +97,9 @@ class CV extends React.Component {
 
         {this.state.pages.map((el) => {
           return (
-          <BlankCV addPage={this.addPage} removePage={this.removePage} >
-          <h1>{el.title}</h1>
-          <p>{el.content}</p>
+          <BlankCV addPage={this.addPage} removePage={this.removePage} key={el.id} >
+            <h1>{el.title}</h1>
+            <p>{el.content}</p>
           </BlankCV> )}
           )
         }

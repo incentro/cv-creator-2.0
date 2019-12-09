@@ -6,7 +6,7 @@ const HeaderCV = ( {name, job, description, changeHeader } ) => {
     localStorage.setItem("userName", name);
     localStorage.setItem("jobTitle", job);
     localStorage.setItem("jobDesc", description);
-  })
+  },[isName, isJob, isDescription])
 
   const [isNameClicked, setIsNameClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
