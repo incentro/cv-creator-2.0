@@ -10,19 +10,14 @@ import addIcon from "../images/add_icon.png"
 import workIcon from "../images/work_icon.png"
 import educationIcon from "../images/education_icon.png"
 
-  const CVPage = React.forwardRef(({userInfo, checkBool, firstPage, showHeight, addPage, extraPages}, ref) => {
+  const CVPage = React.forwardRef(({headerinfo, checkBool, extraLists, inputRef, workexp, education, lists, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
-  const [isExtraList, setIsExtraList] = useState(false)
-  const [isHeaderInfo, setIsHeaderInfo] = useState(userInfo.headerinfo)
-  const [isWorkExp, setIsWorkExp] = useState(userInfo.workexp)
-  const [isEducation, setIsEducation] = useState(userInfo.education)
-  const [isQual, setIsQual] = useState(userInfo.qualities)
-  const [isSkills, setIsSkills] = useState(userInfo.skills)
-  const [isOptional, setIsOptional] = useState(userInfo.optional)
+  const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
+  const [isWorkExp, setIsWorkExp] = useState(workexp)
+  const [isEducation, setIsEducation] = useState(education)
+  const [isLists, setExtraList] = useState(lists);
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
   const [isExtraPages, setIsExtraPages] = useState(extraPages)
-  const [isUserInfo, setUserInfo] = useState(userInfo);
-  const [isInfo, setInfo] = useState(userInfo.basicinfo);
   const [height, setHeight] = useState(0)
 
   const measuredRef = useCallback(node => {
@@ -33,9 +28,16 @@ import educationIcon from "../images/education_icon.png"
 
   let doubleColumn = null;
 
+  //Add new list
+  const addList = () => {
+    const newList = [...isLists, {title: "Nieuwe lijst", values: ["nieuw item"]}];
+    setExtraList(newList);
+  }
+
   ////Change header information function
   const changeHeader = (e) => {
       //Get values of event
+
       const targetedValue = e.target.id;
       const newValue = e.target.value;
       const newObj = {...isHeaderInfo}
@@ -198,21 +200,22 @@ import educationIcon from "../images/education_icon.png"
               </div>
               <div className="column column--orange" onMouseEnter={() => {setIsHovered(!isHovered)}} onMouseLeave={() => {setIsHovered(!isHovered)}} style={{height: "1011px"}}>
                 <h1>Info</h1>
-                <UserInfo item="email" id="email" info = {isInfo.email} userInfo = {userInfo}/>
-                <UserInfo item="telefoon" id="phone" info= {isInfo.phone} userInfo = {userInfo} />
-                <UserInfo item="geboortedatum" id="birthday" info= {isInfo.birthday} userInfo = {userInfo}/>
-                <UserInfo item="website (optioneel)" id="website" info= {isInfo.website} userInfo = {userInfo}/>
-                <UserInfo item="woonplaats" id="residence" info= {isInfo.residence} userInfo = {userInfo}/>
+                <UserInfo item="email" info="sander.vanrijsoort@incentro.com"/>
+                <UserInfo item="telefoon" info="06-43499341"/>
+                <UserInfo item="geboortedatum" info="23 april 1993"/>
+                <UserInfo item="website (optioneel)" info="https://www"/>
+                <UserInfo item="woonplaats" info="Amsterdam"/>
 
-                <List list={isQual} title="Kwaliteiten" userInfo = {userInfo} listName="qualities" />
-                <List list={isSkills} title="Skills" type="decimal" userInfo = {userInfo} listName="skills" />
-                {isExtraList && <List list={isOptional} title="Optioneel" type="decimal" extraList={isExtraList} />}
-                {isHovered && <button className="btn btn--small"> + Add extra list</button>}
-                { isExtraPages ?
-                  null :
-                  <Button name="nieuwe pagina" className="btn btn--add btn--small" onClick={() => { addPage(); setIsExtraPages(!extraPages);
-                  console.log("extraPages:" + extraPages)}} ><img src={addIcon} alt="addicon" /></Button>
+                {isLists.map((el) => {
+                  return (
+                    <List list={el.values}
+                          title={el.title} 
+                          key={el.id} 
+                          />       
+                  )
                 }
+                )}
+                {isHovered && <button className="btn btn--small" onClick={addList}> + Add extra list</button>}
               </div>
             </div>
           </div>

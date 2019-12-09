@@ -102,4 +102,3 @@ class CV extends React.Component {
 }
 
 export default CV
-
