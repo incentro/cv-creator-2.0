@@ -8,21 +8,14 @@ const HeaderCV = ( {name, job, description, changeHeader } ) => {
     localStorage.setItem("jobDesc", description);
   })
 
-  //Booleans
   const [isNameClicked, setIsNameClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
   const [isDescClicked, setIsDescClicked] = useState(false)
-
-  //Word count
   const [isWordCount, setIsWordCount] = useState(description.length)
-
-  //Values
   const [isName, setName] = useState(localStorage.getItem("userName"))
   const [isJob, setJob] = useState(localStorage.getItem("jobTitle"))
   const [isDescription, setDescription] = useState(localStorage.getItem("jobDesc"))
 
-
-  //Save name function
   const saveName = (e) => {
     changeHeader(e);
     setIsNameClicked(!isNameClicked);
