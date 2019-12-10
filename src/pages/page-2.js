@@ -1,5 +1,4 @@
 import React, { useCallback, useRef, useState } from "react"
-import ReactDOM from 'react-dom'
 import FunctionDescription from "../components/CVcomponents/FunctionDescription"
 import UserInfo from "../components/CVcomponents/UserInfo"
 import List from "../components/List/List"
@@ -7,17 +6,17 @@ import HeaderCV from "../components/CVcomponents/HeaderCV"
 import Button from "../components/CVcomponents/Button"
 
 //Import images
-import logoWhite from "../images/incentro_logo_white.png"
 import addIcon from "../images/add_icon.png"
 import workIcon from "../images/work_icon.png"
 import educationIcon from "../images/education_icon.png"
 
-  const CVPage = React.forwardRef(({headerinfo, checkBool, extraLists, inputRef, workexp, education, lists, firstPage, showHeight, addPage, extraPages}, ref) => {
+  const CVPage = React.forwardRef(({userInfo, checkBool, extraLists, inputRef, workexp, education, lists, firstPage, showHeight, addPage, extraPages}, ref) => {
   const [isHovered, setIsHovered] = useState(false)
-  const [isHeaderInfo, setIsHeaderInfo] = useState(headerinfo)
-  const [isWorkExp, setIsWorkExp] = useState(workexp)
-  const [isEducation, setIsEducation] = useState(education)
-  const [isLists, setExtraList] = useState(lists);
+  const [isUserInfo, setUserInfo] = useState(userInfo)
+  const [isHeaderInfo, setIsHeaderInfo] = useState(userInfo.headerinfo)
+  const [isWorkExp, setIsWorkExp] = useState(userInfo.workexp)
+  const [isEducation, setIsEducation] = useState(userInfo.education)
+  const [isLists, setExtraList] = useState(userInfo.lists)
   const [isFirstPage, setIsFirstPage] = useState(firstPage)
   const [isExtraPages, setIsExtraPages] = useState(extraPages)
   const [height, setHeight] = useState(0)
@@ -46,13 +45,25 @@ import educationIcon from "../images/education_icon.png"
 
       newObj[targetedValue] = newValue;
       setIsHeaderInfo(newObj);
+
+      //Save header locally
+      const oldInfo = {...isUserInfo};
+      oldInfo.headerinfo[targetedValue] = newValue;
+      setUserInfo(oldInfo);
+      localStorage.setItem("userData", JSON.stringify(oldInfo));
     }
 
   ////Work experience functions
   //Add a new work experience
   const addWorkExp = (e) => {
-    const newWorkExp = [...isWorkExp, isWorkExp]
+    const newWorkExp = [...isWorkExp, {job: "Vul hier een functie in", description: "Vul hier een beschrijving in.", time: "Vul hier periode in."}]
     setIsWorkExp(newWorkExp)
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.workexp = newWorkExp;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   //Remove an exisiting workexperience
@@ -60,6 +71,12 @@ import educationIcon from "../images/education_icon.png"
     const newWorkExp = [...isWorkExp];
     newWorkExp.splice(index, 1);
     setIsWorkExp(newWorkExp);
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.workexp = newWorkExp;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   const changeWorkExp = (e, index) => {
@@ -73,13 +90,25 @@ import educationIcon from "../images/education_icon.png"
 
     //Setting the state with changed array
     setIsWorkExp(newArr);
+
+    //Save changes local
+    const oldInfo = {...isUserInfo};
+    oldInfo.workexp[index][targetedValue] = newValue;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   ////Education functions
   //Add a new education
   const addEducation = (e) => {
-    const newEducation = [...isEducation, isEducation]
+    const newEducation = [...isEducation, {job: "Vul hier een functie in", description: "Vul hier een beschrijving in.", time: "Vul hier periode in."}]
     setIsEducation(newEducation);
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.education = newEducation;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
   
   //Remove an exisiting workexperience
@@ -87,6 +116,12 @@ import educationIcon from "../images/education_icon.png"
     const remEducation = [...isEducation];
     remEducation.splice(index, 1);
     setIsEducation(remEducation);
+
+    //Save locally
+    const oldInfo = {...isUserInfo};
+    oldInfo.education = remEducation;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   //Edit exisiting education
@@ -101,6 +136,12 @@ import educationIcon from "../images/education_icon.png"
 
     //Setting the state with changed array
     setIsEducation(newArr);
+
+    //Save changes local
+    const oldInfo = {...isUserInfo};
+    oldInfo.education[index][targetedValue] = newValue;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   return (
@@ -137,8 +178,7 @@ import educationIcon from "../images/education_icon.png"
                       checkBool={checkBool}
                       workExp={true}
                       education={false}
-                    />)
-                })}
+                    />)})}
                 <button className="btn btn--add btn--small" onClick={addWorkExp}><img src={workIcon} /> Werkervaring toevoegen</button>
 
                 <h1>Opleidingen {Math.round(height)}px tall</h1>

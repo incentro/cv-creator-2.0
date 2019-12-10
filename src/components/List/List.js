@@ -2,16 +2,23 @@ import React, {useState} from 'react';
 import ListItem from "./ListItem"
 import TitleComponent from "../TitleComponent"
 
-const List = ({ list, title, type }) => {
+const List = ({ list, title, type, userInfo, listName }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [contentState, setContentState] = useState(list);
   const [listStyle, setListStyle] = useState(type);
   const [useTitle, setUseTitle] = useState(title);
+  const [isUserInfo, setUserInfo] = useState(userInfo);
 
   //Adding items to the list
   const addItem = () => {
     const newItem = [...contentState, "Nieuw item"];
     setContentState(newItem);
+    
+    //Save changes local
+    const oldInfo = {...isUserInfo};
+    oldInfo[listName] = newItem
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   //Removing item from the list
@@ -22,6 +29,12 @@ const List = ({ list, title, type }) => {
     })
     //Change the items
     setContentState(remainder);
+    
+    //Save changes local
+    const oldInfo = {...isUserInfo};
+    oldInfo[listName] = remainder;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
     }
 
   //Changing list item and saving
@@ -29,6 +42,12 @@ const List = ({ list, title, type }) => {
     const newArr = [...contentState];
     newArr[index] = e.target.value;
     setContentState(newArr);
+
+    //Save changes local
+    const oldInfo = {...isUserInfo};
+    oldInfo[listName][index].value = e.target.value;
+    setUserInfo(oldInfo);
+    localStorage.setItem("userData", JSON.stringify(oldInfo));
   }
 
   //Changing title function

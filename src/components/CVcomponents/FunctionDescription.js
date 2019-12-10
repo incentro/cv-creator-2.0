@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 //Importing components
 import orangeCircle from "../../images/circle_orange.png"
@@ -7,6 +7,7 @@ import closeIcon from "../../images/close_icon.png"
 import ResizableTextArea from "../CVcomponents/ResizableTextArea"
 
 const FunctionDescription = ( {period, checkBool, job, description, index, changeItem, removeWorkExp, removeEducation, workExp, education} ) => {
+  
   const [isHovered, setIsHovered] = useState(false)
   const [isTimeClicked, setIsTimeClicked] = useState(false)
   const [isJobClicked, setIsJobClicked] = useState(false)
