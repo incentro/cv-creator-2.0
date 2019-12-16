@@ -3,6 +3,7 @@ import React from "react"
 //Import components
 import CVPage from "./page-2"
 import BlankCV from "./blank-cv"
+import addIcon from "../images/add_icon.png"
 
 //Import SCSS stylesheets
 import("../styles/index.scss")
@@ -61,9 +62,8 @@ class CV extends React.Component {
 
   //Add new blank CV page
   addPage = () => {
-    const newPage = [...this.state.pages, "Hallo"];
+    const newPage = [...this.state.pages, {title:"Dit is pagina 1", content:"Met een lulverhaal"}];
     this.setState({pages: newPage});
-    console.log("Aantal pagina's:" + this.state.pages.length);
   }
 
   //Remove a page
@@ -72,10 +72,16 @@ class CV extends React.Component {
     this.setState({pages: this.state.pages});
 
     if (this.state.pages.length === 0) {
-      console.log("Er zijn geen extra pages")
       this.setState({extraPages: false})
     }
   }
+
+  /**
+   * 1. We kijken naar de hoogte van de dubbele kolom (grens is 980)
+   * 2. Als de hoogte > 980, trigger addPage()
+   * 3. Tegelijk move last child van function description naar blank page
+   * 4. Verplaaten van component naar blank cv component op basis van een conditie
+   */
 
   render() {
     return (
@@ -84,14 +90,15 @@ class CV extends React.Component {
                   firstPage = {true}
           />
 
-        {this.state.pages.map((el, index) => {
-          const pageLength = this.state.pages.length;
-          console.log("Statement true?:" + (pageLength === index +1))
+        {this.state.pages.map((el) => {
           return (
-                  <BlankCV lastPage={pageLength === index + 1} addPage={this.addPage} removePage={this.removePage} index={index}>
-                  <h1>Hallo</h1>
-                  </BlankCV>)
-          })}
+          <BlankCV addPage={this.addPage} removePage={this.removePage} key={el.id} >
+            <h1>{el.title}</h1>
+            <p>{el.content}</p>
+          </BlankCV> )}
+          )
+        }
+        <button className="btn btn--add btn--small" onClick={this.addPage}><img src={addIcon} /> Pagina toevoegen</button>
 
       </div>
     )

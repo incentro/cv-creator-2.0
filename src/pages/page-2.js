@@ -56,7 +56,11 @@ import educationIcon from "../images/education_icon.png"
   ////Work experience functions
   //Add a new work experience
   const addWorkExp = (e) => {
+<<<<<<< HEAD
+    const newWorkExp = [...isWorkExp, {id:1, job: "Vul functietitel in...", description: "Schrijf een kort, maar krachtige beschrijving...", time: "Vul hier een periode"}]
+=======
     const newWorkExp = [...isWorkExp, {job: "Vul hier een functie in", description: "Vul hier een beschrijving in.", time: "Vul hier periode in."}]
+>>>>>>> master
     setIsWorkExp(newWorkExp)
 
     //Save locally
@@ -159,6 +163,7 @@ import educationIcon from "../images/education_icon.png"
                   job={isHeaderInfo.job}
                   description={isHeaderInfo.description}
                   changeHeader={changeHeader}
+                  headerinfo={headerinfo}
                 />}
               </div>
             </div>
