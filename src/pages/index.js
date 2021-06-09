@@ -5,71 +5,133 @@ import ReactDOM from "react-dom"
 import CVPage from "./page-2"
 import BlankCV from "./blank-cv"
 import addIcon from "../images/add_icon.png"
+import firebase from "../components/firebase"
 
 //Import SCSS stylesheets
 import("../styles/index.scss")
 
 class CV extends React.Component {
   constructor(props) {
-    super(props);
-    this.childRef = React.createRef();
+    super(props)
+    this.childRef = React.createRef()
     this.state = {
-        headerinfo: {name: "Sander van Rijsoort", job: "Front-end Developer", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."},
-        workexp: [{id:1, job: "Back-end Developer @ Coop", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
-        {id:2, job: "Front-end Developer @ Incentro", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
-      education: [{id:1, job: "Bedrijfskunde @ Erasmus Universiteit", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"},
-        {id:2, job: "Strategic Entrepreneurship @ Erasmus", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", time: "2010-heden"}],
+      headerinfo: {
+        name: "Sander van Rijsoort",
+        job: "Front-end Developer",
+        description:
+          "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+      },
+      workexp: [
+        {
+          id: 1,
+          job: "Back-end Developer @ Coop",
+          description:
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          time: "2010-heden",
+        },
+        {
+          id: 2,
+          job: "Front-end Developer @ Incentro",
+          description:
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          time: "2010-heden",
+        },
+      ],
+      education: [
+        {
+          id: 1,
+          job: "Bedrijfskunde @ Erasmus Universiteit",
+          description:
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          time: "2010-heden",
+        },
+        {
+          id: 2,
+          job: "Strategic Entrepreneurship @ Erasmus",
+          description:
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+          time: "2010-heden",
+        },
+      ],
       lists: [
         {
           title: "Kwaliteiten",
-          values: ["teamplayer", "hardwerkend", "sociaal"]},
+          values: ["teamplayer", "hardwerkend", "sociaal"],
+        },
         {
           title: "Skills",
-          values: ["HTML", "CSS", "Javascript", "React"]}
-        ],
+          values: ["HTML", "CSS", "Javascript", "React"],
+        },
+      ],
       pages: [],
       heightDiv: null,
       checkHeight: true,
       numberOfPages: 0,
       extraPage: false,
-     };
+    }
   }
 
   componentDidMount() {
-    this.heightDiv = this.childRef.current.offsetHeight;
-    console.log("heightDiv:" + this.heightDiv);
+    this.heightDiv = this.childRef.current.offsetHeight
+    console.log("heightDiv:" + this.heightDiv)
+    firebase
+      //Accesses your Firestore database
+      .firestore()
+      //Access the "items" collection
+      .collection("headerInfo")
+      //You can "listen" to a document with the Firebase onSnapshot() method.
+      .get()
+      .then(snapshot => {
+        /*
+    The returned snapshot sends us back the id and the document data. So we map through it.
+     */
+        const listItems = snapshot.docs.map(doc => ({
+          /*
+        Map each document into snapshot
+        id and data are pushed into items array
+        spread operator merges data to id. What is happening is the JavaScript object is being called.
+        */
+          id: doc.id,
+          ...doc.data(),
+        }))
+        //Now we set items equal to items we read from the Firestore
+        console.log(listItems[0].name, listItems[0].job)
+      })
   }
 
   //Get new height of the content column
-    componentDidUpdate(prevState, prevProps) {
-    this.heightDiv = this.childRef.current.offsetHeight;
-    console.log("Height Div Nieuw:" + this.heightDiv);
+  componentDidUpdate(prevState, prevProps) {
+    this.heightDiv = this.childRef.current.offsetHeight
+    console.log("Height Div Nieuw:" + this.heightDiv)
 
-  //Add new page when height goes > 1013px
+    //Add new page when height goes > 1013px
     if (this.heightDiv > 1013) {
-      this.extraPage = true;
+      this.extraPage = true
     }
   }
 
   //Check if height was changed
   changeBool = () => {
-    this.setState({checkHeight: !this.state.checkHeight})
-    console.log("Checking Height:" + this.state.checkHeight);
+    this.setState({ checkHeight: !this.state.checkHeight })
+    console.log("Checking Height:" + this.state.checkHeight)
   }
 
   //Add new blank CV page
   addPage = () => {
-    const newPage = [...this.state.pages, {title:"Dit is pagina 1", content:"Met een lulverhaal"}];
-    this.setState({pages: newPage});
+    const newPage = [
+      ...this.state.pages,
+      { title: "Dit is pagina 1", content: "Met een lulverhaal" },
+    ]
+    this.setState({ pages: newPage })
   }
 
   //Remove a page
   removePage = (e, index) => {
-    this.state.pages.splice(index, 1);
-    this.setState({pages: this.state.pages});
+    this.state.pages.splice(index, 1)
+    this.setState({ pages: this.state.pages })
 
     if (this.state.pages.length === 0) {
-      this.setState({extraPages: false})
+      this.setState({ extraPages: false })
     }
   }
 
@@ -83,32 +145,37 @@ class CV extends React.Component {
   render() {
     return (
       <div>
-          <CVPage firstPage={true}
-                  headerinfo={this.state.headerinfo}
-                  extraPages={this.state.extraPages}
-                  workexp={this.state.workexp}
-                  education={this.state.education}
-                  lists={this.state.lists}
-                  ref={this.childRef}
-                  showHeight={this.showHeightInConsole}
-                  checkBool={this.changeBool}
-                  addPage={this.addPage}
-                  />
+        <CVPage
+          firstPage={true}
+          headerinfo={this.state.headerinfo}
+          extraPages={this.state.extraPages}
+          workexp={this.state.workexp}
+          education={this.state.education}
+          lists={this.state.lists}
+          ref={this.childRef}
+          showHeight={this.showHeightInConsole}
+          checkBool={this.changeBool}
+          addPage={this.addPage}
+        />
 
-        {this.state.pages.map((el) => {
+        {this.state.pages.map(el => {
           return (
-          <BlankCV addPage={this.addPage} removePage={this.removePage} key={el.id} >
-            <h1>{el.title}</h1>
-            <p>{el.content}</p>
-          </BlankCV> )}
+            <BlankCV
+              addPage={this.addPage}
+              removePage={this.removePage}
+              key={el.id}
+            >
+              <h1>{el.title}</h1>
+              <p>{el.content}</p>
+            </BlankCV>
           )
-        }
-        <button className="btn btn--add btn--small" onClick={this.addPage}><img src={addIcon} /> Pagina toevoegen</button>
-
+        })}
+        <button className="btn btn--add btn--small" onClick={this.addPage}>
+          <img src={addIcon} /> Pagina toevoegen
+        </button>
       </div>
     )
   }
 }
 
 export default CV
-
