@@ -2,7 +2,7 @@ import firebase from "firebase/app"
 import "firebase/firestore"
 
 var firebaseConfig = {
-  apiKey: "AIzaSyAECA70-2ckL4XnoLIFFeN_6JDOuE8zSG0",
+  apiKey: process.env.API_KEY,
   authDomain: "cv-creator-2.firebaseapp.com",
   databaseURL:
     "https://cv-creator-2-default-rtdb.europe-west1.firebasedatabase.app",
