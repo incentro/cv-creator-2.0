@@ -2,7 +2,7 @@ import firebase from "../config/firebase-config";
 
 export const loginAuth = (provider) => {
    return firebase.auth().signInWithPopup(provider).then((res) => {
-        return res.user;
+        return res
     }).catch((err) => {
         return err
     })

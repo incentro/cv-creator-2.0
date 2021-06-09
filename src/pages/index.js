@@ -85,8 +85,11 @@ class CV extends React.Component {
   }
 
   handleLogin = async(provider) => {
-    this.setState({isSignedIn: true})
+    // this.setState({isSignedIn: true})
     const res = await loginAuth(provider)
+    if (res.user) {
+      this.setState({isSignedIn: true})
+    }
     console.log(res)
     console.log("ingelogd")
   }
