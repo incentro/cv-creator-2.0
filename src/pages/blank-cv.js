@@ -42,4 +42,5 @@ const BlankCV = ({lastPage, addPage, removePage, index}, props) => {
   )
 }
 
+
 export default BlankCV

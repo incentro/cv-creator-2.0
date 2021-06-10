@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react"
 
-const Button = ({name}, props) => {
+const Button = ({ name }, props) => {
   return (
-  <button className={props.className} onClick={props.onClick}>
-    {name}
-    {props.children}
-  </button>
+    <button className={props.className} onClick={props.onClick}>
+      {name}
+      {props.children}
+    </button>
   )
 }
 

@@ -1,5 +1,4 @@
 import React from "react"
-import ReactDOM from "react-dom"
 
 //Import components
 import CVPage from "./page-2"
@@ -7,7 +6,7 @@ import BlankCV from "./blank-cv"
 import addIcon from "../images/add_icon.png"
 
 import Button from "../components/CVcomponents/Button"
-import { googleProvider } from '../config/authMethod';
+import { googleProvider } from '../config/authMethod'
 import { loginAuth } from "../service/auth"
 import { logoutAuth } from "../service/auth"
 
@@ -85,11 +84,9 @@ class CV extends React.Component {
   }
 
   handleLogin = async(provider) => {
-    // this.setState({isSignedIn: true})
+    this.setState({isSignedIn: true})
     const res = await loginAuth(provider)
-    if (res.user) {
-      this.setState({isSignedIn: true})
-    }
+    if (res)
     console.log(res)
     console.log("ingelogd")
   }
