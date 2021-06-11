@@ -5,14 +5,8 @@ import CVPage from "./page-2"
 import BlankCV from "./blank-cv"
 import addIcon from "../images/add_icon.png"
 
-import Button from "../components/CVcomponents/Button"
-import { googleProvider } from '../config/authMethod'
-import { loginAuth } from "../service/auth"
-import { logoutAuth } from "../service/auth"
-
 //Import SCSS stylesheets
 import("../styles/index.scss")
-
 
 class CV extends React.Component {
   constructor(props) {
@@ -37,13 +31,8 @@ class CV extends React.Component {
       checkHeight: true,
       numberOfPages: 0,
       extraPage: false,
-      isSignedIn: false, 
     };
-    
-    this.handleLogin = this.handleLogin.bind(this)
-    this.handleLogout = this.handleLogout.bind(this)
   }
-
 
   componentDidMount() {
     this.heightDiv = this.childRef.current.offsetHeight;
@@ -83,31 +72,6 @@ class CV extends React.Component {
     }
   }
 
-  handleLogin = async(provider) => {
-    this.setState({isSignedIn: true})
-    const res = await loginAuth(provider)
-    if (res)
-    console.log(res)
-    console.log("ingelogd")
-  }
-
-  handleLogout = async () => {
-    this.setState({isSignedIn: false})
-    const res = await logoutAuth()
-    console.log(res)
-    console.log("uitgelogd")
-  }
-
-  ifUserSignedIn(Button) { 
-    if (this.state.isSignedIn === null) {
-      return (
-      <h1>Eens kijken of je ingelogt bent...</h1>
-      )
-    }
-    return this.state.isSignedIn ? 
-    <h1 onClick={() => this.handleLogout()}>ingelogd</h1> : <h1 onClick={() => this.handleLogin(googleProvider)}>login</h1>
-  } 
-
   /**
    * 1. We kijken naar de hoogte van de dubbele kolom (grens is 980)
    * 2. Als de hoogte > 980, trigger addPage()
@@ -116,18 +80,8 @@ class CV extends React.Component {
    */
 
   render() {
-    const isSignedIn = this.state.isSignedIn;
-
     return (
       <div>
-          {this.ifUserSignedIn(Button)}
-
-          { isSignedIn 
-          ? 
-          <div>logged in</div>
-          :
-          <h1>not logged in</h1>
-        }
           <CVPage firstPage={true}
                   headerinfo={this.state.headerinfo}
                   extraPages={this.state.extraPages}
@@ -139,7 +93,6 @@ class CV extends React.Component {
                   checkBool={this.changeBool}
                   addPage={this.addPage}
                   />
-
         {this.state.pages.map((el) => {
           return (
           <BlankCV addPage={this.addPage} removePage={this.removePage} key={el.id} >
@@ -149,7 +102,6 @@ class CV extends React.Component {
           )
         }
         <button className="btn btn--add btn--small" onClick={this.addPage}><img src={addIcon} /> Pagina toevoegen</button>
-
       </div>
     )
   }
