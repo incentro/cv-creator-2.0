@@ -9,4 +9,4 @@ const PrivateRoute = ({ component: Component, location, ...rest }) => {
   }
   return <Component {...rest} />
 }
-export default PrivateRoute
+export default PrivateRoute;
