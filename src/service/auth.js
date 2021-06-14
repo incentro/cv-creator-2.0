@@ -29,7 +29,7 @@ export const loginAuth = (provider) => {
 
 export const logoutAuth = () => {
     return firebase.auth().signOut().then((res) => {
-        console.log(res);
+        return res
     }).catch((err) => {
         return err
     })

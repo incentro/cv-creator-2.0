@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import { navigate } from "@reach/router"
-import Button from "../components/CVcomponents/Button"
+import GoogleButton from 'react-google-button'
 import { googleProvider } from "../config/authMethod"
 import { loginAuth } from "../service/auth"
 import { logoutAuth } from "../service/auth"
+
 
 //TODO:
 //Change elements copied fror the index to work in a functional component
@@ -36,17 +37,14 @@ const Login = () => {
       return <h1>Eens kijken of je ingelogt bent...</h1>
     }
     return isSignedIn ? (
-      <h1 onClick={() => handleLogout()}>ingelogd</h1>
+      <GoogleButton onClick={() => handleLogout()}>ingelogd</GoogleButton>
     ) : (
-      <h1 onClick={() => handleLogin(googleProvider)}>login</h1>
+      <GoogleButton onClick={() => handleLogin(googleProvider)}>login</GoogleButton>
     )
   }
   return (
     <div className="loginbox">
       Let's create your CV!
-      <button className="btn btn--orange btn--login">
-        Login with Incentro account
-      </button>
       {ifUserSignedIn()}
     </div>
   )
