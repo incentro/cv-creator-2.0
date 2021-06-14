@@ -20,16 +20,13 @@ const Login = () => {
     console.log(res)
     if (res) {
       setIsSignedIn(!isSignedIn)
-      navigate('./privatetest')
+      navigate(-1)
     }
-    // console.log(res)
-    // console.log(isSignedIn)
   }
 
   const handleLogout = async () => {
     setIsSignedIn(!isSignedIn)
     const res = await logoutAuth()
-    // console.log(res)
   }
 
   const ifUserSignedIn = () => {
@@ -37,9 +34,9 @@ const Login = () => {
       return <h1>Eens kijken of je ingelogt bent...</h1>
     }
     return isSignedIn ? (
-      <GoogleButton onClick={() => handleLogout()}>ingelogd</GoogleButton>
+      <GoogleButton onClick={() => handleLogout()}>Uitloggen</GoogleButton>
     ) : (
-      <GoogleButton onClick={() => handleLogin(googleProvider)}>login</GoogleButton>
+      <GoogleButton onClick={() => handleLogin(googleProvider)}>Inloggen</GoogleButton>
     )
   }
   return (
