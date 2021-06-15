@@ -4,7 +4,8 @@ import React, { useEffect, useState, useRef } from "react"
 import CVPage from "./page-2"
 import BlankCV from "./blank-cv"
 import addIcon from "../images/add_icon.png"
-import firebase from "../components/firebase"
+
+import firebase from "../config/firebase-config"
 
 //Import SCSS stylesheets
 import("../styles/index.scss")
@@ -164,3 +165,4 @@ const CV = () => {
 }
 
 export default CV
+

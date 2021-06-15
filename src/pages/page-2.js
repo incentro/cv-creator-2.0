@@ -142,7 +142,7 @@ import educationIcon from "../images/education_icon.png"
                 })}
                 <button className="btn btn--add btn--small" onClick={addWorkExp}><img src={workIcon} /> Werkervaring toevoegen</button>
 
-                <h1>Opleidingen {Math.round(height)}px tall</h1>
+                <h1>Opleidingen</h1>
                 {isEducation.map((el, index) => {
                   return (
                     <FunctionDescription
