@@ -12,20 +12,81 @@ header {
 
 //Login screen
 .loginbox {
-  width: 600px;
-  height: 250px;
+  width: 800px;
+  position: relative;
   box-shadow: 0px 1px 15px #888;
   border-radius: 5px;
   margin: auto;
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 
+.headerbox {
+  position: absolute;
+  margin-top: 30px;
+  background: white;
+  width: 550px;
+  height: 294px;
+  opacity: 0.8;
+  border-radius: 6px;
+  padding: 55px;
+}
+
+.headerbox h1 {
+  font-size: 55px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+
 .login {
   margin: auto;
+}
+
+.logo-box {
+  display: flex;
+  margin-top: 20px
+}
+
+.logo-box p {
+  width: 140px;
+  margin-bottom: 30px;
+}
+
+.logo-comp {
+  display: flex;
+  width: 200px
+}
+
+.logo-last {
+  width: 125px
+}
+
+.chevron-icon {
+  height: 45px;
+  position: relative;
+  top: 35px;
+}
+
+.info-box {
+  width: 800px;
+  background-color: #ECF0F1;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.description-icon{
+  height: 110px;
+}
+
+.login-footer p {
+  margin-bottom: 0px;
+}
+
+.login-footer {
+  margin-bottom: 20px;
 }
 
 //Layout

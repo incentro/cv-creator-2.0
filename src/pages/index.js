@@ -95,11 +95,6 @@ const CV = () => {
           ...doc.data(),
         }))
         //Now we set items equal to items we read from the Firestore
-        console.log(
-          listItems[0].name,
-          listItems[0].job,
-          listItems[0].description
-        )
       })
   }, [])
 
